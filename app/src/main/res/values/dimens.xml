@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="mai_margin_16">16dp</dimen>
+    <dimen name="mai_margin_20">20dp</dimen>
+    <dimen name="mai_margin_32">32dp</dimen>
+    <dimen name="mai_margin_40">40dp</dimen>
+    <dimen name="global_bottom_on_icon">72dp</dimen>
+    <dimen name="global_bottom_off_icon">64dp</dimen>
+    <dimen name="main_margin_8">8dp</dimen>
+    <dimen name="mai_margin_10">10dp</dimen>
+</resources>

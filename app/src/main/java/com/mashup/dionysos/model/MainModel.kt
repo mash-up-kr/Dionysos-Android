@@ -1,5 +1,5 @@
 package com.mashup.dionysos.model
 
 data class MainModel(
-    var test: String = "text"
+    var totalTime: Long = 0L
 )
