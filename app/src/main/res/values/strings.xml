@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Dionysos</string>
+    <string name="today">today</string>
+    <string name="use_timeaps">Use the Timelaps?</string>
+    <string name="use_timeaps_study">타임랩스로 녹화하면서 공부할 수 있어요!</string>
 </resources>
