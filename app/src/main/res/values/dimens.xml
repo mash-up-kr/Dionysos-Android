@@ -8,4 +8,5 @@
     <dimen name="global_bottom_off_icon">64dp</dimen>
     <dimen name="main_margin_8">8dp</dimen>
     <dimen name="mai_margin_10">10dp</dimen>
+    <dimen name="mai_margin_36">36dp</dimen>
 </resources>

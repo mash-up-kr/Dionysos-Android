@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.mashup.dionysos.Util" />
+
+        <variable
+            name="timeVM"
+            type="com.mashup.dionysos.viewmodel.TimeViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:clickable="true"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/btnTimerSettingBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:text="@string/back"
+            android:textColor="@color/coral_pink"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvTimerSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mai_margin_32"
+            android:text="@string/setting"
+            android:textColor="@color/darkGrey"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mai_margin_16"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <EditText
+                android:id="@+id/tvTimerSettingHours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="00"
+                android:inputType="number"
+                android:maxLength="2"
+                android:text="@={timeVM._timerSettingHours}"
+                android:textColor="@color/darkGrey"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=":"
+                android:textColor="@color/darkGrey"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/tvTimerSettingMin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="00"
+                android:inputType="number"
+                android:maxLength="2"
+                android:text="@={timeVM._timerSettingMin}"
+                android:textColor="@color/darkGrey"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text=":"
+                android:textColor="@color/darkGrey"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/tvTimerSettingSec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="00"
+                android:inputType="number"
+                android:maxLength="2"
+                android:text="@={timeVM._timerSettingSec}"
+                android:textColor="@color/darkGrey"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btnPlay"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/mai_margin_36"
+            android:onClick="@{()->timeVM.onClickTimerSettingSave()}"
+            app:imageResource="@{timeVM.timerClickable.getTimerSettingBtn()}" />
+    </LinearLayout>
+
+</layout>

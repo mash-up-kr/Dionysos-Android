@@ -5,11 +5,6 @@
 
     <data>
 
-        <import type="com.mashup.dionysos.Util" />
-
-        <variable
-            name="mainVM"
-            type="com.mashup.dionysos.viewmodel.MainViewModel" />
     </data>
 
     <LinearLayout

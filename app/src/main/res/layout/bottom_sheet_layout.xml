@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" >
-
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="mainVM"
-            type="com.mashup.dionysos.viewmodel.MainViewModel" />
+            name="timeVM"
+            type="com.mashup.dionysos.viewmodel.TimeViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="bottom"
-        android:layout_marginTop="@dimen/mai_margin_32"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="@dimen/mai_margin_32"
             android:text="@string/use_timeaps"
             android:textColor="@color/darkGrey"
             android:textSize="24sp"
             android:textStyle="bold" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,6 +42,7 @@
 
             <ImageView
                 android:id="@+id/btnNope"
+                android:onClick="@{()->timeVM.onClickSelectTimalaps(false)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -54,6 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:onClick="@{()->timeVM.onClickSelectTimalaps(true)}"
                 android:layout_marginStart="@dimen/mai_margin_10"
                 android:src="@drawable/ic_btn_yes"
                 app:layout_constraintStart_toStartOf="parent"

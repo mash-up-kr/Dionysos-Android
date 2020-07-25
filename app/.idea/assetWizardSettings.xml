@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_btn_no" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/btn_no.svg" />
+                            <entry key="outputName" value="ic_btn_done_on" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/btn_done_on_64_px.svg" />
                           </map>
                         </option>
                       </PersistentState>
