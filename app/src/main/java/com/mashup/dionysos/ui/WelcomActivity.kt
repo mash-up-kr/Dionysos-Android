@@ -1,5 +1,6 @@
 package com.mashup.dionysos.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
@@ -13,6 +14,12 @@ class WelcomActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcom)
 
-        Glide.with(this).load(R.drawable.login).into(gif_img)
+        Glide.with(this).load(R.drawable.animation_signup).into(gif_img)
+
+        gif_img.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

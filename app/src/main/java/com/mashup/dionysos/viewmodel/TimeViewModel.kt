@@ -3,6 +3,7 @@ package com.mashup.dionysos.viewmodel
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.mashup.dionysos.model.MainModel
 import com.mashup.dionysos.model.PlayModel
 import com.mashup.dionysos.model.TimerSetting
 
@@ -10,6 +11,7 @@ class TimeViewModel(application: Application) : BaseViewModel(application) {
     val controlTime = MutableLiveData<Long>(0)
 
     val timeDataModel = MutableLiveData(PlayModel(playStatus = false, increase = true, totalTime = 0L))
+    val mainBottom = MutableLiveData(MainModel(ranking = false, home = true, myPage = false))
 
     //페이지이동
     var fragmentChange = MutableLiveData<Boolean>()
@@ -24,8 +26,34 @@ class TimeViewModel(application: Application) : BaseViewModel(application) {
     var _timerSettingMin = MutableLiveData<String>()
     var _timerSettingSec = MutableLiveData<String>()
 
+    var changeFagment = MutableLiveData<Int>(2)
+
     init {
         showMainTapbar.value = true
+    }
+
+    fun timeBottomClick(int: Int) {
+        com.google.android.exoplayer2.util.Log.e("1322", "timeBottomClick")
+        changeFagment.value = int
+        val a = mainBottom.value!!
+        when (int) {
+            1 -> {
+               a.ranking = true
+               a.home = false
+               a.myPage = false
+            }
+            2 -> {
+               a.ranking = false
+               a.home = true
+               a.myPage = false
+            }
+            3 -> {
+               a.ranking = false
+               a.home = false
+               a.myPage = true
+            }
+        }
+        mainBottom.value = a
     }
 
     fun onClickTimerSettingSave() {

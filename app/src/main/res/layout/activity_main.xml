@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
 
@@ -22,6 +23,7 @@
             android:layout_height="match_parent" />
 
         <include
+            bind:timeVM="@{timeVM}"
             layout="@layout/item_global_bottom"
             android:visibility="@{timeVM.showMainTapbar ? View.VISIBLE : View.GONE, default=visible}"
             app:layout_constraintBottom_toBottomOf="parent"

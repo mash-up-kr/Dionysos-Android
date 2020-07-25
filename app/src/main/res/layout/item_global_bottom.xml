@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="timeVM"
+            type="com.mashup.dionysos.viewmodel.TimeViewModel" />
     </data>
 
     <LinearLayout
@@ -25,7 +28,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_btn_ranking_off"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{()->timeVM.timeBottomClick(1)}"
+                app:imageResource="@{timeVM.mainBottom.getRankingBtn()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,7 +42,10 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/mai_margin_20"
                 android:layout_marginEnd="@dimen/mai_margin_20"
-                android:src="@drawable/ic_btn_home_on"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{()->timeVM.timeBottomClick(2)}"
+                app:imageResource="@{timeVM.mainBottom.getHomeBtn()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,7 +54,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_btn_my_off"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{()->timeVM.timeBottomClick(3)}"
+                app:imageResource="@{timeVM.mainBottom.getMyPageBtn()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>

@@ -15,6 +15,7 @@ class NicknameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_nickname)
 
         setListeners()
+
     }
 
     private fun setListeners(){

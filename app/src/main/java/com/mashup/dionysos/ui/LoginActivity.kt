@@ -31,6 +31,10 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         init()
+        mogackgong_ko_text.setOnClickListener {
+            redirectNicknameActivity()
+        }
+
     }
 
     private fun init() {
@@ -50,11 +54,11 @@ class LoginActivity : AppCompatActivity() {
         mLoginCallback = LoginCallback()
     }
 
-    private fun setListeners(){
-        kakao_login_btn.setOnClickListener{
+    private fun setListeners() {
+        kakao_login_btn.setOnClickListener {
             session!!.open(AuthType.KAKAO_ACCOUNT, this)
         }
-        facebook_login_btn.setOnClickListener{
+        facebook_login_btn.setOnClickListener {
             facebook_login_btn.setReadPermissions(Arrays.asList("public_profile", "email"));
             facebook_login_btn.registerCallback(mCallbackManager, mLoginCallback);
         }
@@ -98,8 +102,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun redirectNicknameActivity()
-    {
+    private fun redirectNicknameActivity() {
         val intent = Intent(this, NicknameActivity::class.java)
         startActivity(intent)
         finish()
@@ -112,13 +115,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(
-        requestCode: Int,
-        resultCode: Int,
-        data: Intent?
+            requestCode: Int,
+            resultCode: Int,
+            data: Intent?
     ) {
         // 카카오톡|스토리 간편로그인 실행 결과를 받아서 SDK로 전달
         if (Session.getCurrentSession()
-                .handleActivityResult(requestCode, resultCode, data)
+                        .handleActivityResult(requestCode, resultCode, data)
         ) {
             return
         }
