@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Dionysos</string>
+    <string name="kakao_app_key">7f988142a1162aabbbba6eea97fc7e12</string>
 </resources>
