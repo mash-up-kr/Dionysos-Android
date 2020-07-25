@@ -5,4 +5,7 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="darkGrey">#212226</color>
     <color name="white">#fff</color>
+    <color name="lightBlueGrey">#cdd0d4</color>
+    <color name="coralPink">#fc5a6e</color>
+    <color name="azure">#1a96fc</color>
 </resources>

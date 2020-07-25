@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.NicknameActivity">
+
+    <TextView
+        android:id="@+id/nickname_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/mai_margin_16"
+        android:layout_marginTop="72dp"
+        android:text="@string/nickname_title"
+        android:textColor="@color/darkGrey"
+        android:textSize="@dimen/text_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/nickname_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/here"
+        android:textSize="@dimen/text_16"
+        android:textColor="@color/darkGrey"
+        android:background="@android:color/transparent"
+        android:textCursorDrawable="@drawable/text_cursor"
+        android:inputType="textNoSuggestions|textVisiblePassword"
+        android:layout_marginStart="@dimen/mai_margin_16"
+        android:layout_marginTop="@dimen/mai_margin_20"
+        android:layout_marginEnd="@dimen/mai_margin_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nickname_title_text" />
+
+    <TextView
+        android:id="@+id/ans_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/mai_margin_16"
+        android:layout_marginTop="@dimen/main_margin_8"
+        android:text="음......."
+        android:textColor="@color/coralPink"
+        android:textSize="@dimen/text_14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nickname_edit_text" />
+
+    <ImageView
+        android:id="@+id/ok_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/mai_margin_16"
+        android:layout_marginBottom="@dimen/mai_margin_16"
+        android:src="@drawable/nickname_ok_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

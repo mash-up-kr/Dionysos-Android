@@ -1,19 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.LoginActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/mogackgong_ko_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/mai_margin_16"
+        android:layout_marginTop="80dp"
+        android:text="@string/mogakgong_ko"
+        android:textColor="@color/darkGrey"
+        android:textSize="@dimen/text_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/mogackgong_en_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/mai_margin_16"
+        android:layout_marginTop="@dimen/main_margin_8"
+        android:text="@string/mogakgong"
+        android:textColor="@color/darkGrey"
+        android:textSize="@dimen/text_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mogackgong_ko_text" />
 
     <ImageView
         android:id="@+id/kakao_login_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
+        android:layout_width="300dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="183dp"
         android:src="@drawable/kakao_login_medium_wide"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/facebook_login_btn"
+        android:layout_width="300dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kakao_login_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

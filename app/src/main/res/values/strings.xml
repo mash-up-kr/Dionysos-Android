@@ -1,7 +1,20 @@
 <resources>
     <string name="app_name">Dionysos</string>
-    <string name="kakao_app_key">7f988142a1162aabbbba6eea97fc7e12</string>
     <string name="today">today</string>
     <string name="use_timeaps">Use the Timelaps?</string>
     <string name="use_timeaps_study">타임랩스로 녹화하면서 공부할 수 있어요!</string>
+
+    //LoginActiviy
+    <string name="mogakgong_ko">모여서 각자 공부,</string>
+    <string name="mogakgong">mo gak gong</string>
+
+    //NicknameActiviy
+    <string name="nickname_title">안녕! 너의 멋진\n닉네임을 알려줘.</string>
+    <string name="here">여기여기!</string>
+
+    //WelcomActivity
+    <string name="welcom_title">가입완료!</string>
+
+    <string name="kakao_app_key">7f988142a1162aabbbba6eea97fc7e12</string>
+    <string name="facebook_app_key">309621503723266</string>
 </resources>
