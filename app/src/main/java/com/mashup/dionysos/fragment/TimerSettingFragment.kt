@@ -29,19 +29,15 @@ class TimerSettingFragment :
         timeViewModel.timeDataModel.observe(this, Observer { it ->
             if (!it.increase) {
                 Log.e("timeDataModel", "it $it")
-
-                bottomSheet.show(childFragmentManager, "exampleBottomSheet")
+                bottomSheet.show(childFragmentManager, "")
             }
         })
 
         timeViewModel.timeLaps.observe(this, Observer { it ->
-            if (bottomSheet.showsDialog)
-                bottomSheet.dismiss()
             if (it) {
                 Log.e("fragmentChange", "카메라")
             } else {
                 replaceFragment(TimeControlFragment())
-                fragmentManager!!.popBackStack()
             }
         })
 
@@ -60,12 +56,19 @@ class TimerSettingFragment :
         timeViewModel._timerSettingSec.observe(this, Observer { it ->
             if (it.toInt() != 0)
                 timeViewModel.timerClickable.value = TimerSetting(true)
+
         })
+
+        timeViewModel.isChild.observe(this, Observer { it ->
+            parentFragmentManager.beginTransaction().remove(this).commit()
+            parentFragmentManager.popBackStack()
+        })
+
     }
 
     private fun replaceFragment(fragment: Fragment) {
-        val transaction = fragmentManager!!.beginTransaction()
-        transaction.replace(R.id.fragment_time_control, fragment).commit();
+        val transaction = childFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_time_setting, fragment).commit();
     }
 
     override fun onDetach() {

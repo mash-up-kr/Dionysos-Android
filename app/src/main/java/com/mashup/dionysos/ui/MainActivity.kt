@@ -1,6 +1,8 @@
 package com.mashup.dionysos.ui
 
+import android.content.Intent
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mashup.dionysos.R
 import com.mashup.dionysos.databinding.ActivityMainBinding
@@ -18,9 +20,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
         initMainDataBinding()
 
+
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.fragmentMainTap, mainHomeFragment).commitAllowingStateLoss()
+
+//        timeViewModel.fragmentChange.observe(this, Observer { it ->
+//            val intent = Intent(applicationContext, TimePlayActivity::class.java)
+//            startActivity(intent) //액티비티 띄우기
+//        })
+
 
     }
 
@@ -30,7 +39,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         binding.timeVM = timeViewModel
     }
 
-//
+
 //    private fun replaceFragment(fragment: Fragment) {
 //
 //        val fragmentManager = supportFragmentManager

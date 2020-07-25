@@ -18,6 +18,7 @@ class TimeViewModel(application: Application) : BaseViewModel(application) {
     val timerClickable = MutableLiveData(TimerSetting())
     var timeLaps = MutableLiveData<Boolean>()
     var playerStatus = MutableLiveData<Int>()
+    var isChild = MutableLiveData<Boolean>()
 
     var _timerSettingHours = MutableLiveData<String>()
     var _timerSettingMin = MutableLiveData<String>()

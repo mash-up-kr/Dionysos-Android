@@ -1,65 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="timeVM"
             type="com.mashup.dionysos.viewmodel.TimeViewModel" />
     </data>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/mai_margin_32"
-            android:text="@string/use_timeaps"
-            android:textColor="@color/darkGrey"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/main_margin_8"
-            android:text="@string/use_timeaps_study"
-            android:textColor="@color/darkGrey"
-            android:textSize="15sp" />
-
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/layoutBottomSheet"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/mai_margin_40"
-            android:layout_marginBottom="@dimen/mai_margin_40"
-            android:orientation="horizontal">
+            android:clickable="true"
+            android:orientation="vertical"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-            <ImageView
-                android:id="@+id/btnNope"
-                android:onClick="@{()->timeVM.onClickSelectTimalaps(false)}"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_btn_no"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginTop="@dimen/mai_margin_32"
+                android:text="@string/use_timeaps"
+                android:textColor="@color/darkGrey"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/btnYeah"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:onClick="@{()->timeVM.onClickSelectTimalaps(true)}"
-                android:layout_marginStart="@dimen/mai_margin_10"
-                android:src="@drawable/ic_btn_yes"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginStart="@dimen/main_margin_8"
+                android:text="@string/use_timeaps_study"
+                android:textColor="@color/darkGrey"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/mai_margin_40"
+                android:layout_marginBottom="@dimen/mai_margin_40"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/btnNope"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:onClick="@{()->timeVM.onClickSelectTimalaps(false)}"
+                    android:src="@drawable/ic_btn_no"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/btnYeah"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/mai_margin_10"
+                    android:onClick="@{()->timeVM.onClickSelectTimalaps(true)}"
+                    android:src="@drawable/ic_btn_yes"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 </layout>

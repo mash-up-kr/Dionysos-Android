@@ -2,6 +2,7 @@ package com.mashup.dionysos.fragment
 
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mashup.dionysos.BR
@@ -46,6 +47,10 @@ class TimeControlFragment :
                 }
                 2 -> {
                     job.cancel()
+                    parentFragmentManager.beginTransaction().remove(this).commit()
+                    parentFragmentManager.popBackStack()
+                    timeViewModel.isChild.value = true
+
                 }
             }
 
@@ -76,7 +81,6 @@ class TimeControlFragment :
             it_.controlTime.postValue(base)
             it_.timeDataModel.postValue(timeDataModel)
             Log.e("TimeControlFragment", "   it_.controlTime${it_.controlTime.value}")
-
         }
     }
 

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.iwgang:scaletablayout:1.2@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c3fe02475d9822cf9d7094d7b875feb7/jetified-scaletablayout-1.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c3fe02475d9822cf9d7094d7b875feb7/jetified-scaletablayout-1.2/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.iwgang/scaletablayout/1.2/d4497f8531b08928808a09831e3c8eee24b2772b/scaletablayout-1.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
