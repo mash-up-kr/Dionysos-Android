@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.mashup.dionysos.R
+import com.mashup.dionysos.model.Ranking
 import com.mashup.dionysos.model.StatisticsGraph
 import com.mashup.dionysos.ui.mypage.StatisticsGraphFragment
 import com.mashup.dionysos.ui.mypage.adapter.StatisticsGraphAdapter
@@ -32,8 +33,14 @@ class RankingPageFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(RankingPageViewModel::class.java)
         // TODO: Use the ViewModel
 
-        recyclerview.adapter =
-            StatisticsGraphAdapter()
+        recyclerview.adapter = RankingAdapter()
+        val list = listOf(
+            Ranking(5, 154, "원숭원숭", "", 10, true),
+            Ranking(0, 4, "하이", "", 90),
+            Ranking(1, 5, "하이2", "", 80),
+            Ranking(2, 6, "하이3", "", 70)
+        )
+        (recyclerview.adapter as RankingAdapter).submitList(list.toMutableList())
     }
 
 }

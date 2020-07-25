@@ -25,6 +25,7 @@ class RankingAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Ranking) {
+            binding.ranking = item
             binding.executePendingBindings()
         }
 
