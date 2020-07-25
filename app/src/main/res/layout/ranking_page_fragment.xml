@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ranking.RankingPageFragment">
+
+
+    <ImageView
+        android:id="@+id/firstProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/ic_profile_76dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_rank_1_st"
+        app:layout_constraintBottom_toTopOf="@id/firstProfile"
+        app:layout_constraintEnd_toEndOf="@id/firstProfile"
+        app:layout_constraintStart_toStartOf="@id/firstProfile"
+        app:layout_constraintTop_toTopOf="@id/firstProfile" />
+
+    <TextView
+        android:id="@+id/firstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="@id/firstProfile"
+        app:layout_constraintStart_toStartOf="@id/firstProfile"
+        app:layout_constraintTop_toBottomOf="@id/firstProfile" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="@id/firstProfile"
+        app:layout_constraintStart_toStartOf="@id/firstProfile"
+        app:layout_constraintTop_toBottomOf="@id/firstName" />
+
+    <ImageView
+        android:id="@+id/secondProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="30dp"
+        android:src="@drawable/ic_profile_76dp"
+        app:layout_constraintBottom_toBottomOf="@id/firstProfile"
+        app:layout_constraintEnd_toStartOf="@id/firstProfile"
+        app:layout_constraintTop_toBottomOf="@id/firstProfile" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_rank_2_nd"
+        app:layout_constraintBottom_toTopOf="@id/secondProfile"
+        app:layout_constraintEnd_toEndOf="@id/secondProfile"
+        app:layout_constraintStart_toStartOf="@id/secondProfile"
+        app:layout_constraintTop_toTopOf="@id/secondProfile" />
+
+    <TextView
+        android:id="@+id/secondName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="@id/secondProfile"
+        app:layout_constraintStart_toStartOf="@id/secondProfile"
+        app:layout_constraintTop_toBottomOf="@id/secondProfile" />
+
+    <TextView
+        android:id="@+id/secondTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="@id/secondProfile"
+        app:layout_constraintStart_toStartOf="@id/secondProfile"
+        app:layout_constraintTop_toBottomOf="@id/secondName" />
+
+    <ImageView
+        android:id="@+id/thirdProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/ic_profile_76dp"
+        app:layout_constraintBottom_toBottomOf="@id/firstProfile"
+        app:layout_constraintStart_toEndOf="@id/firstProfile"
+        app:layout_constraintTop_toBottomOf="@id/firstProfile" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_rank_3_rd"
+        app:layout_constraintBottom_toTopOf="@id/thirdProfile"
+        app:layout_constraintEnd_toEndOf="@id/thirdProfile"
+        app:layout_constraintStart_toStartOf="@id/thirdProfile"
+        app:layout_constraintTop_toTopOf="@id/thirdProfile" />
+
+    <TextView
+        android:id="@+id/thirdName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="@id/thirdProfile"
+        app:layout_constraintStart_toStartOf="@id/thirdProfile"
+        app:layout_constraintTop_toBottomOf="@id/thirdProfile" />
+
+    <TextView
+        android:id="@+id/thirdTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="@id/thirdProfile"
+        app:layout_constraintStart_toStartOf="@id/thirdProfile"
+        app:layout_constraintTop_toBottomOf="@id/thirdName" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="secondTime,thirdTime" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/barrier" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
