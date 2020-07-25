@@ -9,12 +9,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mashup.dionysos.databinding.BottomSheetLayoutBinding
-import com.mashup.dionysos.viewmodel.MainViewModel
+import com.mashup.dionysos.viewmodel.TimeViewModel
 import kotlinx.android.synthetic.main.bottom_sheet_layout.*
 
 
 class BottomSheetDialog : BottomSheetDialogFragment() {
-    lateinit var mainViewModel: MainViewModel
+    lateinit var timeViewModel: TimeViewModel
 
      lateinit var binding: BottomSheetLayoutBinding
 
@@ -32,10 +32,10 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
 
         val viewModelFactory =
                 ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        mainViewModel =
-                ViewModelProvider(activity!!, viewModelFactory).get(MainViewModel::class.java)
+        timeViewModel =
+                ViewModelProvider(activity!!, viewModelFactory).get(TimeViewModel::class.java)
 
-        binding.setVariable(BR.mainVM, mainViewModel)
+        binding.setVariable(BR.timeVM, timeViewModel)
 
     }
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
