@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.facebook.CallbackManager
 import com.kakao.auth.AuthType
 import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
@@ -13,11 +14,17 @@ import com.kakao.usermgmt.callback.MeV2ResponseCallback
 import com.kakao.usermgmt.response.MeV2Response
 import com.kakao.util.exception.KakaoException
 import com.mashup.dionysos.R
+import com.mashup.dionysos.facebooklogin.LoginCallback
 import kotlinx.android.synthetic.main.activity_login.*
+import java.util.*
+
 
 class LoginActivity : AppCompatActivity() {
 
     var session: Session? = null
+
+    private var mLoginCallback: LoginCallback? = null
+    private var mCallbackManager: CallbackManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,11 +44,19 @@ class LoginActivity : AppCompatActivity() {
         session?.addCallback(sessionCallback)
         //토큰 만료시 갱신 시켜줌
         Session.getCurrentSession().checkAndImplicitOpen()
+
+        // facebook
+        mCallbackManager = CallbackManager.Factory.create()
+        mLoginCallback = LoginCallback()
     }
 
     private fun setListeners(){
         kakao_login_btn.setOnClickListener{
             session!!.open(AuthType.KAKAO_ACCOUNT, this)
+        }
+        facebook_login_btn.setOnClickListener{
+            facebook_login_btn.setReadPermissions(Arrays.asList("public_profile", "email"));
+            facebook_login_btn.registerCallback(mCallbackManager, mLoginCallback);
         }
     }
 
@@ -77,9 +92,17 @@ class LoginActivity : AppCompatActivity() {
                 override fun onSuccess(result: MeV2Response) {
                     val uid = java.lang.Long.toString(result.id)
                     Log.i("KAKAO_API", "사용자 아이디: $uid")
+                    redirectNicknameActivity()
                 }
             })
         }
+    }
+
+    private fun redirectNicknameActivity()
+    {
+        val intent = Intent(this, NicknameActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     override fun onDestroy() {
@@ -99,6 +122,9 @@ class LoginActivity : AppCompatActivity() {
         ) {
             return
         }
+
+        //mCallbackManager.onActivityResult(requestCode, resultCode, data)
+
         super.onActivityResult(requestCode, resultCode, data)
     }
 
