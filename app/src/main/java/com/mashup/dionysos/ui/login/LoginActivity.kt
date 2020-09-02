@@ -1,4 +1,4 @@
-package com.mashup.dionysos.ui
+package com.mashup.dionysos.ui.login
 
 import android.content.Intent
 import android.os.Bundle

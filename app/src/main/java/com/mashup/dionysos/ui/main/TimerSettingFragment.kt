@@ -1,4 +1,4 @@
-package com.mashup.dionysos.fragment
+package com.mashup.dionysos.ui.main
 
 import android.os.Bundle
 import android.util.Log
@@ -6,11 +6,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mashup.dionysos.BR
-import com.mashup.dionysos.BottomSheetDialog
 import com.mashup.dionysos.R
 import com.mashup.dionysos.databinding.FragmentTimerSettingBinding
+import com.mashup.dionysos.base.fragment.BaseFragment
 import com.mashup.dionysos.model.TimerSetting
-import com.mashup.dionysos.viewmodel.TimeViewModel
 
 class TimerSettingFragment :
         BaseFragment<FragmentTimerSettingBinding>(R.layout.fragment_timer_setting) {

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mashup.dionysos.R
 import com.mashup.dionysos.databinding.RankingFragmentBinding
-import com.mashup.dionysos.ui.BaseFragment
+import com.mashup.dionysos.base.fragment.BaseFragment
 
 class RankingFragment : BaseFragment<RankingFragmentBinding>(R.layout.ranking_fragment) {
 

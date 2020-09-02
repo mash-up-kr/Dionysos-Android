@@ -1,4 +1,4 @@
-package com.mashup.dionysos.viewmodel
+package com.mashup.dionysos.base.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

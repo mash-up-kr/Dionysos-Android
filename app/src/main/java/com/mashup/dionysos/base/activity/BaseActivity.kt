@@ -1,4 +1,4 @@
-package com.mashup.dionysos.ui
+package com.mashup.dionysos.base.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import com.mashup.dionysos.R
 import com.mashup.dionysos.databinding.TimeStampImagesFragmentBinding
 import com.mashup.dionysos.model.TimeStamp
-import com.mashup.dionysos.ui.BaseFragment
+import com.mashup.dionysos.base.fragment.BaseFragment
 import com.mashup.dionysos.ui.mypage.adapter.TimeStampAdapter
 
 class TimeStampImagesFragment :

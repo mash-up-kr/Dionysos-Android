@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.NicknameActivity">
+    tools:context=".ui.login.NicknameActivity">
 
     <TextView
         android:id="@+id/nickname_title_text"

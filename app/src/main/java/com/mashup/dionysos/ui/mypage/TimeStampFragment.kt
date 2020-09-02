@@ -7,7 +7,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.mashup.dionysos.R
 import com.mashup.dionysos.databinding.TimeStampFragmentBinding
 import com.mashup.dionysos.model.TimeStamp
-import com.mashup.dionysos.ui.BaseFragment
+import com.mashup.dionysos.base.fragment.BaseFragment
 import com.mashup.dionysos.ui.mypage.viewpager.TimeStampViewPagerAdapter
 
 class TimeStampFragment : BaseFragment<TimeStampFragmentBinding>(R.layout.time_stamp_fragment) {

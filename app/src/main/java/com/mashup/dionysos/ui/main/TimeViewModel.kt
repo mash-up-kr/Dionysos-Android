@@ -1,4 +1,4 @@
-package com.mashup.dionysos.viewmodel
+package com.mashup.dionysos.ui.main
 
 import android.app.Application
 import android.util.Log
@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.mashup.dionysos.model.MainModel
 import com.mashup.dionysos.model.PlayModel
 import com.mashup.dionysos.model.TimerSetting
+import com.mashup.dionysos.base.viewmodel.BaseViewModel
 
 class TimeViewModel(application: Application) : BaseViewModel(application) {
     val controlTime = MutableLiveData<Long>(0)

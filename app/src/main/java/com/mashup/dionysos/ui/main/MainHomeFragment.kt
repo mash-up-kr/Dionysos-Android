@@ -1,20 +1,14 @@
-package com.mashup.dionysos.fragment
+package com.mashup.dionysos.ui.main
 
-import android.net.wifi.rtt.CivicLocationKeys.STATE
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
 import com.mashup.dionysos.BR
-import com.mashup.dionysos.BottomSheetDialog
 import com.mashup.dionysos.R
 import com.mashup.dionysos.databinding.FragmentMainHomeBinding
-import com.mashup.dionysos.viewmodel.TimeViewModel
-import kotlinx.android.synthetic.main.bottom_sheet_layout.*
-import kotlinx.android.synthetic.main.fragment_main_home.*
+import com.mashup.dionysos.base.fragment.BaseFragment
 
 
 class MainHomeFragment :

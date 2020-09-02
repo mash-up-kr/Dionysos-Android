@@ -11,7 +11,7 @@
 
         <variable
             name="timeVM"
-            type="com.mashup.dionysos.viewmodel.TimeViewModel" />
+            type="com.mashup.dionysos.ui.main.TimeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
