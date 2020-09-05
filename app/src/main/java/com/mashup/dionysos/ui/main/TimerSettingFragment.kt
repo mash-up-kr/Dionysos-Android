@@ -40,25 +40,39 @@ class TimerSettingFragment :
             }
         })
         timeViewModel.timerSettingHours.observe(this, Observer { it ->
-            if (it != null && it != "") {
-                if (it.toInt() > 24) {
-                    timeViewModel.timerSettingHours.value = 0.toString()
-                } else if (it.toInt() != 0)
-                    timeViewModel.timerClickable.value = TimerSetting(true)
-            }
+            timerSetting(it, "H")
         })
         timeViewModel.timerSettingMin.observe(this, Observer { it ->
-            if (it != null && it != "") {
-                if (it.toInt() != 0)
-                    timeViewModel.timerClickable.value = TimerSetting(true)
-            }
+            timerSetting(it, "M")
         })
         timeViewModel.timerSettingSec.observe(this, Observer { it ->
-            if (it != null && it != "") {
-                if (it.toInt() != 0)
-                    timeViewModel.timerClickable.value = TimerSetting(true)
-            }
+            timerSetting(it, "S")
         })
+    }
+
+    private fun timerSetting(it: String?, time: String) {
+        it?.let {
+            if (it != "") {
+                when (time) {
+                    "H" -> {
+                        if (it.toInt() > 24) {
+                            timeViewModel.timerSettingHours.value = "0"
+                        }
+                    }
+                    "M" -> {
+                        if (it.toInt() > 60) {
+                            timeViewModel.timerSettingMin.value = "0"
+                        }
+                    }
+                    "S" -> {
+                        if (it.toInt() > 60) {
+                            timeViewModel.timerSettingSec.value = "0"
+                        }
+                    }
+                }
+                timeViewModel.timerClickable.value = TimerSetting(it.toInt() != 0)
+            }
+        }
     }
 
     override fun onDestroy() {
