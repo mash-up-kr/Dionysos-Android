@@ -61,7 +61,7 @@
                 android:hint="00"
                 android:inputType="number"
                 android:maxLength="2"
-                android:text="@={timeVM._timerSettingHours}"
+                android:text="@={timeVM.timerSettingHours}"
                 android:textColor="@color/darkGrey"
                 android:textSize="36sp"
                 android:textStyle="bold" />
@@ -85,7 +85,7 @@
                 android:hint="00"
                 android:inputType="number"
                 android:maxLength="2"
-                android:text="@={timeVM._timerSettingMin}"
+                android:text="@={timeVM.timerSettingMin}"
                 android:textColor="@color/darkGrey"
                 android:textSize="36sp"
                 android:textStyle="bold" />
@@ -109,7 +109,7 @@
                 android:hint="00"
                 android:inputType="number"
                 android:maxLength="2"
-                android:text="@={timeVM._timerSettingSec}"
+                android:text="@={timeVM.timerSettingSec}"
                 android:textColor="@color/darkGrey"
                 android:textSize="36sp"
                 android:textStyle="bold" />
