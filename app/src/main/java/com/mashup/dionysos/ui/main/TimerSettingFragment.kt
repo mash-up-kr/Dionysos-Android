@@ -14,7 +14,7 @@ import com.mashup.dionysos.model.TimerSetting
 class TimerSettingFragment :
         BaseFragment<FragmentTimerSettingBinding>(R.layout.fragment_timer_setting) {
 
-    lateinit var timeViewModel: TimeViewModel
+    private lateinit var timeViewModel: TimeViewModel
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -41,18 +41,18 @@ class TimerSettingFragment :
         })
 
 
-        timeViewModel._timerSettingHours.observe(this, Observer { it ->
+        timeViewModel.timerSettingHours.observe(this, Observer { it ->
             if (it.toInt() > 24) {
-                timeViewModel._timerSettingHours.value = 0.toString()
+                timeViewModel.timerSettingHours.value = 0.toString()
             } else if (it.toInt() != 0)
                 timeViewModel.timerClickable.value = TimerSetting(true)
         })
-        timeViewModel._timerSettingMin.observe(this, Observer { it ->
+        timeViewModel.timerSettingMin.observe(this, Observer { it ->
             if (it.toInt() != 0)
                 timeViewModel.timerClickable.value = TimerSetting(true)
 
         })
-        timeViewModel._timerSettingSec.observe(this, Observer { it ->
+        timeViewModel.timerSettingSec.observe(this, Observer { it ->
             if (it.toInt() != 0)
                 timeViewModel.timerClickable.value = TimerSetting(true)
 
@@ -68,10 +68,6 @@ class TimerSettingFragment :
     private fun replaceFragment(fragment: Fragment) {
         val transaction = childFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_time_setting, fragment).commit();
-    }
-
-    override fun onDetach() {
-        super.onDetach()
     }
 
     companion object {

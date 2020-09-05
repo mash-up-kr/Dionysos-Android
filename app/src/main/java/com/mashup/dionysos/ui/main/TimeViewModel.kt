@@ -16,26 +16,26 @@ class TimeViewModel(application: Application) : BaseViewModel(application) {
 
     //페이지이동
     var fragmentChange = MutableLiveData<Boolean>()
-    var showMainTapbar = MutableLiveData<Boolean>()
+    var showMainTabBar = MutableLiveData<Boolean>()
 
     val timerClickable = MutableLiveData(TimerSetting())
     var timeLaps = MutableLiveData<Boolean>()
     var playerStatus = MutableLiveData<Int>()
     var isChild = MutableLiveData<Boolean>()
 
-    var _timerSettingHours = MutableLiveData<String>()
-    var _timerSettingMin = MutableLiveData<String>()
-    var _timerSettingSec = MutableLiveData<String>()
+    var timerSettingHours = MutableLiveData<String>()
+    var timerSettingMin = MutableLiveData<String>()
+    var timerSettingSec = MutableLiveData<String>()
 
-    var changeFagment = MutableLiveData<Int>(2)
+    var changeFragment = MutableLiveData<Int>(2)
 
     init {
-        showMainTapbar.value = true
+        showMainTabBar.value = true
     }
 
     fun timeBottomClick(int: Int) {
         com.google.android.exoplayer2.util.Log.e("1322", "timeBottomClick")
-        changeFagment.value = int
+        changeFragment.value = int
         val a = mainBottom.value!!
         when (int) {
             1 -> {
@@ -59,9 +59,9 @@ class TimeViewModel(application: Application) : BaseViewModel(application) {
 
     fun onClickTimerSettingSave() {
         if (timerClickable.value!!.clickable) {
-            val h = _timerSettingHours.value?.toInt() ?: 0
-            val m = _timerSettingMin.value?.toInt() ?: 0
-            val s = _timerSettingSec.value?.toInt() ?: 0
+            val h = timerSettingHours.value?.toInt() ?: 0
+            val m = timerSettingMin.value?.toInt() ?: 0
+            val s = timerSettingSec.value?.toInt() ?: 0
             val totalSettingTime = timerClickable.value!!.getTotalTime(h, m, s)
             timeDataModel.value!!.timer = totalSettingTime
             timeDataModel.value!!.increase = false

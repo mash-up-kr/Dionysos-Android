@@ -14,7 +14,7 @@ import com.mashup.dionysos.base.fragment.BaseFragment
 class MainHomeFragment :
         BaseFragment<FragmentMainHomeBinding>(R.layout.fragment_main_home) {
 
-    lateinit var timeViewModel: TimeViewModel
+    private lateinit var timeViewModel: TimeViewModel
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -35,7 +35,6 @@ class MainHomeFragment :
                 }
         })
         timeViewModel.timeLaps.observe(this, Observer { it ->
-
                 Log.e("timeLaps", "$it")
                 if (it) {
                     Log.e("fragmentChange", "카메라")
@@ -43,12 +42,11 @@ class MainHomeFragment :
                     replaceFragment(TimeControlFragment.newInstance())
                 }
         })
-
     }
 
     private fun replaceFragment(fragment: Fragment) {
         if (!fragment.isAdded) {
-            timeViewModel.showMainTapbar.value = false
+            timeViewModel.showMainTabBar.value = false
             val transaction = fragmentManager!!.beginTransaction()
             transaction.addToBackStack(null)
             transaction.replace(R.id.fragment_time_control, fragment).commit();
