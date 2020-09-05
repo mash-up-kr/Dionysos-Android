@@ -11,6 +11,8 @@
     //NicknameActiviy
     <string name="nickname_title">안녕! 너의 멋진\n닉네임을 알려줘.</string>
     <string name="here">여기여기!</string>
+    <string name="nickname_um">음………….</string>
+    <string name="nickname_great">진짜 멋지다!</string>
 
     //WelcomActivity
     <string name="welcom_title">가입완료!</string>
