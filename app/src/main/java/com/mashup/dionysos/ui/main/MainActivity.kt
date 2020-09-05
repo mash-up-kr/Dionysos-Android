@@ -3,7 +3,6 @@ package com.mashup.dionysos.ui.main
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.exoplayer2.util.Log
 import com.mashup.dionysos.R
 import com.mashup.dionysos.base.activity.BaseActivity
 import com.mashup.dionysos.databinding.ActivityMainBinding
@@ -27,7 +26,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         android.util.Log.e(TAG, ":  onCreateView")
 
         timeViewModel.changeFragment.observe(this, Observer { it ->
-            Log.e("1322", "xddd")
+            timeViewModel.newFragment = true
             when (it) {
                 1 -> {
                     val fragmentManager = supportFragmentManager

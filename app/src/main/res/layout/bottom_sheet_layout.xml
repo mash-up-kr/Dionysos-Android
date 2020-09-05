@@ -4,6 +4,7 @@
 
     <data>
 
+        <import type="com.mashup.dionysos.ui.main.TimeViewModel.SelectTimeLapse" />
         <variable
             name="timeVM"
             type="com.mashup.dionysos.ui.main.TimeViewModel" />
@@ -49,7 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:onClick="@{()->timeVM.onClickSelectTimalaps(false)}"
+                    android:onClick="@{()->timeVM.onClickSelectTimeLapse(SelectTimeLapse.NOPE)}"
                     android:src="@drawable/ic_btn_no"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -60,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/mai_margin_10"
-                    android:onClick="@{()->timeVM.onClickSelectTimalaps(true)}"
+                    android:onClick="@{()->timeVM.onClickSelectTimeLapse(SelectTimeLapse.YEAH)}"
                     android:src="@drawable/ic_btn_yes"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
