@@ -4,7 +4,7 @@
     xmlns:bind="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="com.mashup.dionysos.ui.main.TimeViewModel.SelectFragment"/>
         <variable
             name="timeVM"
             type="com.mashup.dionysos.ui.main.TimeViewModel" />
@@ -30,7 +30,7 @@
             android:layout_height="72dp"
             android:layout_marginBottom="@dimen/mai_margin_32"
             android:src="@drawable/ic_timer"
-            android:onClick="@{()->timeVM.onClickSelectTimerFragment(true)}"
+            android:onClick="@{()->timeVM.onClickSelectTimerFragment(SelectFragment.Setting)}"
             app:layout_constraintBottom_toTopOf="@id/btnStopWatch"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
@@ -40,7 +40,7 @@
             android:layout_width="200dp"
             android:layout_height="144dp"
             android:layout_marginBottom="@dimen/mai_margin_16"
-            android:onClick="@{()->timeVM.onClickSelectTimerFragment(false)}"
+            android:onClick="@{()->timeVM.onClickSelectTimerFragment(SelectFragment.BottomSheet)}"
             android:src="@drawable/ic_stop_watch"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

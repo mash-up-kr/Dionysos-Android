@@ -7,8 +7,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mashup.dionysos.BR
 import com.mashup.dionysos.R
-import com.mashup.dionysos.databinding.FragmentMainHomeBinding
 import com.mashup.dionysos.base.fragment.BaseFragment
+import com.mashup.dionysos.databinding.FragmentMainHomeBinding
 
 
 class MainHomeFragment :
@@ -27,25 +27,42 @@ class MainHomeFragment :
         bottomSheet.timeViewModel = timeViewModel
 
         timeViewModel.fragmentChange.observe(this, Observer { it ->
-                Log.e("fragmentChange", it.toString())
-                if (it) {
-                    replaceFragment(TimerSettingFragment.newInstance())
-                } else {
-                    bottomSheet.show(fragmentManager!!, "exampleBottomSheet")
+            Log.e("fragmentChange", it.toString())
+            if (!timeViewModel.newFragment) {
+                when (it) {
+                    TimeViewModel.SelectFragment.Setting -> {
+                        replaceFragment(TimerSettingFragment.newInstance())
+                    }
+                    TimeViewModel.SelectFragment.BottomSheet -> {
+                        bottomSheet.show(fragmentManager!!, "exampleBottomSheet")
+                    }
                 }
+            } else {
+                timeViewModel.newFragment = false
+            }
         })
-        timeViewModel.timeLaps.observe(this, Observer { it ->
-                Log.e("timeLaps", "$it")
-                if (it) {
-                    Log.e("fragmentChange", "카메라")
-                } else {
-                    replaceFragment(TimeControlFragment.newInstance())
+
+        timeViewModel.timeLapse.observe(this, Observer { it ->
+            if (timeViewModel.fragmentChange.value == TimeViewModel.SelectFragment.TIMER) {
+                when (it) {
+                    TimeViewModel.SelectTimeLapse.YEAH, TimeViewModel.SelectTimeLapse.NOPE -> {
+                        timeViewModel.popFragment.value = true
+                    }
                 }
+            }
+            if (it == TimeViewModel.SelectTimeLapse.YEAH) {
+                Log.e("fragmentChange", "카메라")
+                timeViewModel.timeLapse.value = TimeViewModel.SelectTimeLapse.DISMISS
+            } else if (it == TimeViewModel.SelectTimeLapse.NOPE) {
+                replaceFragment(TimeControlFragment.newInstance())
+                timeViewModel.timeLapse.value = TimeViewModel.SelectTimeLapse.DISMISS
+            }
         })
     }
 
     private fun replaceFragment(fragment: Fragment) {
         if (!fragment.isAdded) {
+            timeViewModel.newFragment = true
             timeViewModel.showMainTabBar.value = false
             val transaction = fragmentManager!!.beginTransaction()
             transaction.addToBackStack(null)
