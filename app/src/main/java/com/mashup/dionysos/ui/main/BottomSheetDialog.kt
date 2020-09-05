@@ -1,4 +1,4 @@
-package com.mashup.dionysos
+package com.mashup.dionysos.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.mashup.dionysos.BR
+import com.mashup.dionysos.R
 import com.mashup.dionysos.databinding.BottomSheetLayoutBinding
-import com.mashup.dionysos.viewmodel.TimeViewModel
-import kotlinx.android.synthetic.main.bottom_sheet_layout.*
 
 
 class BottomSheetDialog : BottomSheetDialogFragment() {
@@ -21,7 +20,8 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.bottom_sheet_layout, container, false)
+        binding = DataBindingUtil.inflate(inflater,
+            R.layout.bottom_sheet_layout, container, false)
         binding.lifecycleOwner = this
         return binding.root
     }
@@ -39,7 +39,8 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
 
     }
 
-    override fun getTheme(): Int = R.style.BottomSheetDialogTheme
+    override fun getTheme(): Int =
+        R.style.BottomSheetDialogTheme
 
 
     companion object {

@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import com.mashup.dionysos.R
 import com.mashup.dionysos.databinding.StatisticsGraphFragmentBinding
 import com.mashup.dionysos.model.StatisticsGraph
-import com.mashup.dionysos.ui.BaseFragment
+import com.mashup.dionysos.base.fragment.BaseFragment
 import com.mashup.dionysos.ui.mypage.adapter.StatisticsGraphAdapter
 import kotlinx.android.synthetic.main.statistics_graph_fragment.*
 

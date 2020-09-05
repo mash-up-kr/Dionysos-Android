@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mashup.dionysos.R
 import com.mashup.dionysos.databinding.MyPageFragmentBinding
-import com.mashup.dionysos.ui.BaseFragment
+import com.mashup.dionysos.base.fragment.BaseFragment
 import com.mashup.dionysos.ui.mypage.viewpager.MyPageViewPagerAdapter
 
 class MyPageFragment : BaseFragment<MyPageFragmentBinding>(R.layout.my_page_fragment) {

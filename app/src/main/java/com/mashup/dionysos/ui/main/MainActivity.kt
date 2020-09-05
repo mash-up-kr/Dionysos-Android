@@ -1,16 +1,14 @@
-package com.mashup.dionysos.ui
+package com.mashup.dionysos.ui.main
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.exoplayer2.util.Log
 import com.mashup.dionysos.R
 import com.mashup.dionysos.databinding.ActivityMainBinding
-import com.mashup.dionysos.fragment.MainHomeFragment
+import com.mashup.dionysos.base.activity.BaseActivity
 import com.mashup.dionysos.ui.mypage.MyPageFragment
 import com.mashup.dionysos.ui.ranking.RankingFragment
-import com.mashup.dionysos.viewmodel.TimeViewModel
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {

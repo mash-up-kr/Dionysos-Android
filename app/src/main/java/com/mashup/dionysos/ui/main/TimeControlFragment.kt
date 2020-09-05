@@ -1,14 +1,13 @@
-package com.mashup.dionysos.fragment
+package com.mashup.dionysos.ui.main
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mashup.dionysos.BR
 import com.mashup.dionysos.R
 import com.mashup.dionysos.databinding.FragmentTimeControlBinding
-import com.mashup.dionysos.viewmodel.TimeViewModel
+import com.mashup.dionysos.base.fragment.BaseFragment
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 

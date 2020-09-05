@@ -7,7 +7,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.mashup.dionysos.R
 import com.mashup.dionysos.databinding.StatisticsFragmentBinding
 import com.mashup.dionysos.model.StatisticsGraph
-import com.mashup.dionysos.ui.BaseFragment
+import com.mashup.dionysos.base.fragment.BaseFragment
 import com.mashup.dionysos.ui.mypage.viewpager.StatisticsViewPagerAdapter
 
 class StatisticsFragment : BaseFragment<StatisticsFragmentBinding>(R.layout.statistics_fragment) {

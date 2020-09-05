@@ -37,6 +37,4 @@ object Util {
                 toSeconds - TimeUnit.MINUTES.toSeconds(toMinutes)
         )
     }
-
-
 }
