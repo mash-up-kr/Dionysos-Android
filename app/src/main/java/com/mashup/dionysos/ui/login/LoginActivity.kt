@@ -133,6 +133,8 @@ class LoginActivity : AppCompatActivity() {
 
     /*
     //해시키 얻는 코드
+    터미널에 `keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore -storepass android -keypass android | openssl sha1 -binary | openssl base64`
+
     private fun getHashKey() {
         var packageInfo: PackageInfo? = null
         try {
