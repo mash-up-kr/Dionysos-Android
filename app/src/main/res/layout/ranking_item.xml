@@ -14,7 +14,7 @@
         android:layout_height="72dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/rounded_background"
-        android:backgroundTint="@{ranking.isMine ? @color/darkGrey : @color/very_light_pink_70}">
+        android:backgroundTint="@{ranking.isMine ? @color/dark_grey : @color/very_light_pink_70}">
 
         <TextView
             android:id="@+id/rate"
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@{String.valueOf(ranking.rate)}"
-            android:textColor="@{ranking.isMine ? @color/white : @color/darkGrey}"
+            android:textColor="@{ranking.isMine ? @color/white : @color/dark_grey}"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -46,7 +46,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             android:text="@{ranking.nickname}"
-            android:textColor="@{ranking.isMine ? @color/white : @color/darkGrey}"
+            android:textColor="@{ranking.isMine ? @color/white : @color/dark_grey}"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@id/profileImage"
             app:layout_constraintTop_toTopOf="parent" />
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@{String.valueOf(ranking.time)}"
-            android:textColor="@{ranking.isMine ? @color/white : @color/darkGrey}"
+            android:textColor="@{ranking.isMine ? @color/white : @color/dark_grey}"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@id/nickname"
             app:layout_constraintTop_toBottomOf="@id/nickname" />
