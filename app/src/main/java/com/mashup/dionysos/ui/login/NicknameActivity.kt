@@ -10,25 +10,35 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.mashup.dionysos.R
 import com.mashup.dionysos.api.MogakgongRetrofit
+import com.mashup.dionysos.api.dto.Provider
 import com.mashup.dionysos.api.dto.ReqNicknameCheck
+import com.mashup.dionysos.api.dto.ReqSignIn
+import com.mashup.dionysos.api.dto.ReqSignUp
+import com.mashup.dionysos.ui.main.MainActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_nickname.*
 import retrofit2.adapter.rxjava3.HttpException
 
 class NicknameActivity : AppCompatActivity() {
-
-    var nickname = ""
+    companion object {
+        private const val TAG = "NICKNAME_ACTIVIVY"
+    }
+    private var userId:String? = null
+    private var provider:String?= null
     private val repository = MogakgongRetrofit.getService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nickname)
         setListeners()
+        userId = intent.getStringExtra("userId")
+        provider = intent.getStringExtra("provider")
+
         nickname_edit_text.afterTextChanged { checkNickname(nickname_edit_text.text.toString()) }
     }
 
-    fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
+    private fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
         this.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
@@ -44,11 +54,23 @@ class NicknameActivity : AppCompatActivity() {
 
     private fun setListeners() {
         ok_btn.setOnClickListener {
-            val intent = Intent(this, WelcomActivity::class.java)
-            nickname = nickname_edit_text.text.toString()
-            startActivity(intent)
-            finish()
+            signUp()
         }
+    }
+    private fun signUp() {
+        val nickname = nickname_edit_text.text.toString()
+        repository.reqSignUp(ReqSignUp(nickname,provider?:Provider.KAKAO.value,userId?:"guest1"))
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                Log.e(TAG, "success signUp $it")
+                val intent = Intent(this, WelcomActivity::class.java)
+                startActivity(intent)
+                finish()
+            }, { e ->
+                e.printStackTrace()
+                Log.e("signUp e", e.toString())
+            })
     }
 
     private fun checkNickname(text:String) {
