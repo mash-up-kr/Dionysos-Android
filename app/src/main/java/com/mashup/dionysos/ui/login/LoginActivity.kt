@@ -14,17 +14,28 @@ import com.kakao.usermgmt.callback.MeV2ResponseCallback
 import com.kakao.usermgmt.response.MeV2Response
 import com.kakao.util.exception.KakaoException
 import com.mashup.dionysos.R
+import com.mashup.dionysos.api.MogakgongRetrofit
+import com.mashup.dionysos.api.dto.Provider
+import com.mashup.dionysos.api.dto.ReqSignIn
 import com.mashup.dionysos.facebooklogin.LoginCallback
+import com.mashup.dionysos.ui.main.MainActivity
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
 
 
 class LoginActivity : AppCompatActivity() {
-
+    companion object {
+        private const val TAG = "LOGIN_ACTIVIVY"
+    }
     var session: Session? = null
+    var userId = "guest"
+    var provider = Provider.GUEST.value
 
     private var mLoginCallback: LoginCallback? = null
     private var mCallbackManager: CallbackManager? = null
+    private val repository = MogakgongRetrofit.getService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,8 +70,8 @@ class LoginActivity : AppCompatActivity() {
             session!!.open(AuthType.KAKAO_ACCOUNT, this)
         }
         facebook_login_btn.setOnClickListener {
-            facebook_login_btn.setReadPermissions(Arrays.asList("public_profile", "email"));
-            facebook_login_btn.registerCallback(mCallbackManager, mLoginCallback);
+            facebook_login_btn.setReadPermissions(Arrays.asList("public_profile", "email"))
+            facebook_login_btn.registerCallback(mCallbackManager, mLoginCallback)
         }
     }
 
@@ -95,7 +106,8 @@ class LoginActivity : AppCompatActivity() {
                 // 사용자정보 요청에 성공한 경우,
                 override fun onSuccess(result: MeV2Response) {
                     val uid = java.lang.Long.toString(result.id)
-                    Log.i("KAKAO_API", "사용자 아이디: $uid")
+                    provider =  Provider.KAKAO.value
+                    userId = uid
                     redirectNicknameActivity()
                 }
             })
@@ -103,9 +115,26 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun redirectNicknameActivity() {
-        val intent = Intent(this, NicknameActivity::class.java)
-        startActivity(intent)
-        finish()
+        signIn()
+    }
+
+    private fun signIn() {
+        repository.reqSignIn(ReqSignIn(provider, userId))
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                Log.e(TAG, "success signIn $it")
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }, { e ->
+                e.printStackTrace()
+                val intent = Intent(this, NicknameActivity::class.java)
+                intent.putExtra("userId", userId)
+                intent.putExtra("provider", provider)
+                startActivity(intent)
+                finish()
+            })
     }
 
     override fun onDestroy() {
@@ -121,13 +150,12 @@ class LoginActivity : AppCompatActivity() {
     ) {
         // 카카오톡|스토리 간편로그인 실행 결과를 받아서 SDK로 전달
         if (Session.getCurrentSession()
-                        .handleActivityResult(requestCode, resultCode, data)
+                .handleActivityResult(requestCode, resultCode, data)
         ) {
             return
         }
 
         //mCallbackManager.onActivityResult(requestCode, resultCode, data)
-
         super.onActivityResult(requestCode, resultCode, data)
     }
 
