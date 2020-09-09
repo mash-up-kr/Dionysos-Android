@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -10,8 +9,10 @@
         android:clickable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:lineSpacingExtra="12sp"
+        android:textStyle="bold"
         android:layout_marginStart="@dimen/mai_margin_16"
-        android:layout_marginTop="80dp"
         android:text="@string/mogakgong_ko"
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/text_24"
@@ -19,35 +20,99 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:lineSpacingExtra="12sp"
+        android:textStyle="bold"
         android:id="@+id/mogackgong_en_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/mai_margin_16"
         android:layout_marginTop="@dimen/main_margin_8"
         android:text="@string/mogakgong"
         android:textColor="@color/dark_grey"
         android:textSize="@dimen/text_24"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/mogackgong_ko_text"
         app:layout_constraintTop_toBottomOf="@+id/mogackgong_ko_text" />
 
-    <ImageView
+    <LinearLayout
         android:id="@+id/kakao_login_btn"
-        android:layout_width="300dp"
-        android:layout_height="44dp"
-        android:layout_marginBottom="183dp"
-        android:src="@drawable/kakao_login_medium_wide"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/mai_margin_10"
+        android:background="@drawable/ic_circle_6"
+        android:backgroundTint="@color/kakao"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/facebook_login_layout"
+        app:layout_constraintEnd_toEndOf="@id/guest_login_btn"
+        app:layout_constraintStart_toStartOf="@id/guest_login_btn">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/loginBtnHeight"
+            android:layout_gravity="center"
+            android:drawableStart="@drawable/ic_kakaotalk"
+            android:drawablePadding="6dp"
+            android:gravity="center"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="5sp"
+            android:text="Sign in with Kakao"
+            android:textColor="@color/white"
+            android:textSize="@dimen/loginBtnText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/facebook_login_layout"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/loginBtnHeight"
+        android:layout_marginBottom="@dimen/mai_margin_10"
+        android:background="@drawable/ic_circle_6"
+        android:backgroundTint="@color/fecebook"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/guest_login_btn"
+        app:layout_constraintEnd_toEndOf="@id/guest_login_btn"
+        app:layout_constraintStart_toStartOf="@id/guest_login_btn">
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/facebook_login_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="@color/fecebook"
+            android:drawableStart="@drawable/ic_facebook"
+            android:drawablePadding="6dp"
+            android:gravity="center"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="5sp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/loginBtnText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/guest_login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/loginBtnMarginRow"
+        android:layout_marginEnd="@dimen/loginBtnMarginRow"
+        android:layout_marginBottom="115dp"
+        android:background="@drawable/ic_circle_6"
+        android:backgroundTint="@color/light_blue_grey"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/facebook_login_btn"
-        android:layout_width="300dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kakao_login_btn"
-        tools:ignore="MissingClass" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/loginBtnHeight"
+            android:layout_gravity="center"
+            android:drawableStart="@drawable/ic_guest"
+            android:drawablePadding="6dp"
+            android:gravity="center"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="5sp"
+            android:text="Sign in with Guest"
+            android:textColor="@color/white"
+            android:textSize="@dimen/loginBtnText" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

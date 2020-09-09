@@ -10,8 +10,11 @@
 
     <color name="coral_pink">#fc5a6e</color>
 
-    <color name="light_blue_grey">#cdd0d4</color>
+    //login
+    <color name="kakao">#f9e000</color>
+    <color name="fecebook">#4267b2</color>
 
+    <color name="light_blue_grey">#cdd0d4</color>
     <color name="very_light_pink">#f2f2f2</color>
     <color name="very_light_pink_70">#b3f2f2f2</color>
 
