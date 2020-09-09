@@ -12,7 +12,7 @@
 ### Branch
 
 1. Fork 생성해서 작업합니다.
-2. feature 별로 issue를 생성후 feature/{이슈번호}-{기능명} 브랜치를 생성 후 작업합니다.
+2. feature 별로 issue를 생성후 feature 브랜치를 생성 후 작업합니다.
 3. issue를 모두 구현하면 commit 메시지 마지막에 이슈번호를 붙여 close 해줍니다.
 
 ### PR
