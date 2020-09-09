@@ -13,7 +13,7 @@
         android:layout_marginStart="@dimen/mai_margin_16"
         android:layout_marginTop="72dp"
         android:text="@string/nickname_title"
-        android:textColor="@color/darkGrey"
+        android:textColor="@color/dark_grey"
         android:textSize="@dimen/text_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/here"
         android:textSize="@dimen/text_16"
-        android:textColor="@color/darkGrey"
+        android:textColor="@color/dark_grey"
         android:background="@android:color/transparent"
         android:textCursorDrawable="@drawable/text_cursor"
         android:inputType="textNoSuggestions|textVisiblePassword"
@@ -42,7 +42,7 @@
         android:layout_marginStart="@dimen/mai_margin_16"
         android:layout_marginTop="@dimen/main_margin_8"
         android:text="음......."
-        android:textColor="@color/coralPink"
+        android:textColor="@color/coral_pink"
         android:textSize="@dimen/text_14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nickname_edit_text" />

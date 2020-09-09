@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/mai_margin_32"
             android:text="@string/setting"
-            android:textColor="@color/darkGrey"
+            android:textColor="@color/dark_grey"
             android:textSize="36sp"
             android:textStyle="bold" />
 
@@ -63,7 +63,7 @@
                 android:inputType="number"
                 android:maxLength="2"
                 android:text="@={timeVM.timerSettingHours}"
-                android:textColor="@color/darkGrey"
+                android:textColor="@color/dark_grey"
                 android:textSize="36sp"
                 android:textStyle="bold" />
 
@@ -73,7 +73,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text=":"
-                android:textColor="@color/darkGrey"
+                android:textColor="@color/dark_grey"
                 android:textSize="36sp"
                 android:textStyle="bold" />
 
@@ -87,7 +87,7 @@
                 android:inputType="number"
                 android:maxLength="2"
                 android:text="@={timeVM.timerSettingMin}"
-                android:textColor="@color/darkGrey"
+                android:textColor="@color/dark_grey"
                 android:textSize="36sp"
                 android:textStyle="bold" />
 
@@ -97,7 +97,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text=":"
-                android:textColor="@color/darkGrey"
+                android:textColor="@color/dark_grey"
                 android:textSize="36sp"
                 android:textStyle="bold" />
 
@@ -111,7 +111,7 @@
                 android:inputType="number"
                 android:maxLength="2"
                 android:text="@={timeVM.timerSettingSec}"
-                android:textColor="@color/darkGrey"
+                android:textColor="@color/dark_grey"
                 android:textSize="36sp"
                 android:textStyle="bold" />
         </LinearLayout>

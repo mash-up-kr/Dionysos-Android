@@ -13,7 +13,7 @@
         android:layout_marginStart="@dimen/mai_margin_16"
         android:layout_marginTop="80dp"
         android:text="@string/mogakgong_ko"
-        android:textColor="@color/darkGrey"
+        android:textColor="@color/dark_grey"
         android:textSize="@dimen/text_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +25,7 @@
         android:layout_marginStart="@dimen/mai_margin_16"
         android:layout_marginTop="@dimen/main_margin_8"
         android:text="@string/mogakgong"
-        android:textColor="@color/darkGrey"
+        android:textColor="@color/dark_grey"
         android:textSize="@dimen/text_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mogackgong_ko_text" />
