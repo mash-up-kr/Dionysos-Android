@@ -1,11 +1,14 @@
 package com.mashup.dionysos.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mashup.dionysos.R
 import com.mashup.dionysos.base.activity.BaseActivity
 import com.mashup.dionysos.databinding.ActivityMainBinding
+import com.mashup.dionysos.ui.login.NicknameActivity
+import com.mashup.dionysos.ui.mypage.MyPageEditActivity
 import com.mashup.dionysos.ui.mypage.MyPageFragment
 import com.mashup.dionysos.ui.ranking.RankingFragment
 
@@ -26,6 +29,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         android.util.Log.e(TAG, ":  onCreateView")
 
         timeViewModel.changeFragment.observe(this, Observer { it ->
+            android.util.Log.e(TAG, ":  changeFragment $it")
+
             timeViewModel.newFragment = true
             when (it) {
                 1 -> {
@@ -43,6 +48,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
                     transaction.replace(R.id.fragmentMainTap, myPageFragment).commit()
+                }
+                4 -> {
+                    android.util.Log.e(TAG, ":  44444")
+
+                    val intent = Intent(this, MyPageEditActivity::class.java)
+                    startActivity(intent)
                 }
             }
         })

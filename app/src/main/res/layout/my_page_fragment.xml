@@ -5,13 +5,20 @@
 
     <data>
 
+        <variable
+            name="timeVM"
+            type="com.mashup.dionysos.ui.main.TimeViewModel" />
+
+        <variable
+            name="mypageVM"
+            type="com.mashup.dionysos.ui.mypage.MyPageViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         tools:context=".ui.mypage.MyPageFragment">
 
@@ -27,12 +34,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/editButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="edit"
-            android:textColor="#fc5a6e"
+            android:id="@+id/editButton"
+            android:lineSpacingExtra="6sp"
+            android:textColor="@color/light_blue_grey"
             android:textSize="24sp"
+            tools:text="setting"
+            android:text="edit"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -57,28 +66,50 @@
                 android:layout_height="wrap_content">
 
                 <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/imageView1"
+                    android:id="@+id/ivProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_profile"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/btnEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_circle_20"
+                    android:backgroundTint="@color/dark_grey"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:letterSpacing="-0.03"
+                    android:onClick="@{()->timeVM.editMyPageClick()}"
+                    android:paddingStart="6dp"
+                    android:paddingTop="1dp"
+                    android:paddingEnd="6dp"
+                    android:paddingBottom="1dp"
+                    android:text="edit"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/ivProfile"
+                    app:layout_constraintEnd_toEndOf="@id/ivProfile" />
 
                 <TextView
                     android:id="@+id/nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Hello"
+                    android:layout_marginStart="@dimen/mai_margin_20"
+                    android:letterSpacing="-0.02"
+                    android:text="@{mypageVM.userInfo.nickname}"
                     android:textColor="#212226"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageView1"
+                    app:layout_constraintBottom_toTopOf="@+id/dateText"
+                    app:layout_constraintStart_toEndOf="@id/ivProfile"
+                    app:layout_constraintTop_toTopOf="@id/ivProfile"
+                    app:layout_constraintVertical_chainStyle="packed"
                     tools:text="원숭이가나무에서떨어졌다" />
 
                 <TextView
@@ -86,11 +117,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginBottom="5dp"
                     android:text="Hello"
+                    android:letterSpacing="-0.02"
                     android:textColor="#212226"
                     android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/ivProfile"
+                    app:layout_constraintStart_toStartOf="@id/nickname"
                     app:layout_constraintTop_toBottomOf="@id/nickname"
                     tools:text="모각공과 함께한지 160일째" />
 
@@ -100,7 +133,7 @@
                     android:layout_height="2dp"
                     android:layout_marginTop="16dp"
                     android:background="#f2f2f2"
-                    app:layout_constraintTop_toBottomOf="@id/dateText" />
+                    app:layout_constraintTop_toBottomOf="@id/ivProfile" />
 
                 <View
                     android:id="@+id/bottomDivider"
@@ -114,7 +147,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     app:layout_constraintBottom_toTopOf="@id/bottomDivider"
-                    app:layout_constraintTop_toBottomOf="@id/topDivider"
+                    app:layout_constraintTop_toTopOf="@id/topDivider"
                     app:tabGravity="center"
                     app:tabIndicatorColor="#000000"
                     app:tabTextAppearance="@style/TabTextAppearance" />
