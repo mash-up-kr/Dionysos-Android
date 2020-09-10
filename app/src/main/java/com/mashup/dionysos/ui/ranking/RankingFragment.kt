@@ -1,7 +1,7 @@
 package com.mashup.dionysos.ui.ranking
 
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mashup.dionysos.R
 import com.mashup.dionysos.databinding.RankingFragmentBinding
@@ -19,7 +19,7 @@ class RankingFragment : BaseFragment<RankingFragmentBinding>(R.layout.ranking_fr
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(RankingViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(RankingViewModel::class.java)
 
         binding.viewpager.adapter =
             RankingViewPagerAdapter(
