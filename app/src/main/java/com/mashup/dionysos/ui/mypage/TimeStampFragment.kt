@@ -1,6 +1,7 @@
 package com.mashup.dionysos.ui.mypage
 
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -22,7 +23,7 @@ class TimeStampFragment : BaseFragment<TimeStampFragmentBinding>(R.layout.time_s
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(TimeStampViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(TimeStampViewModel::class.java)
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {

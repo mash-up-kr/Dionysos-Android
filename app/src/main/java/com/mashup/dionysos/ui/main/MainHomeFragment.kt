@@ -21,7 +21,6 @@ class MainHomeFragment :
         val viewModelFactory =
                 ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         val bottomSheet = BottomSheetDialog()
-
         timeViewModel = ViewModelProvider(activity!!, viewModelFactory).get(TimeViewModel::class.java)
         binding.setVariable(BR.timeVM, timeViewModel)
         bottomSheet.timeViewModel = timeViewModel

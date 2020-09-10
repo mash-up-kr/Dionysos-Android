@@ -25,6 +25,7 @@ class StatisticsFragment : BaseFragment<StatisticsFragmentBinding>(R.layout.stat
         viewModel = ViewModelProvider(this).get(StatisticsViewModel::class.java)
         // TODO: Use the ViewModel
 
+
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
             }
