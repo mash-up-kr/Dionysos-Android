@@ -28,7 +28,7 @@ import java.util.*
 
 class LoginActivity : AppCompatActivity() {
     companion object {
-        private const val TAG = "LOGIN_ACTIVIVY"
+        private const val TAG = "LOGIN_ACTIVITY"
     }
     var session: Session? = null
     var userId = "guest"

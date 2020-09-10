@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_my_page_edit.*
 
 class MyPageEditActivity : BaseActivity<ActivityMyPageEditBinding>(R.layout.activity_my_page_edit) {
     companion object {
-        private const val TAG = "MY_PAGE_EDIT_ACTIVIVY"
+        private const val TAG = "MY_PAGE_EDIT_ACTIVITY"
     }
 
     lateinit var timeViewModel: TimeViewModel

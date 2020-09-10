@@ -22,7 +22,7 @@ import retrofit2.adapter.rxjava3.HttpException
 
 class NicknameActivity : AppCompatActivity() {
     companion object {
-        private const val TAG = "NICKNAME_ACTIVIVY"
+        private const val TAG = "NICKNAME_ACTIVITY"
     }
     private var userId:String? = null
     private var provider:String?= null
