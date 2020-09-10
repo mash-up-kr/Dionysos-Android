@@ -15,7 +15,7 @@ import com.mashup.dionysos.ui.ranking.RankingFragment
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     companion object {
-        private const val TAG = "MAIN_ACTIVIVY"
+        private const val TAG = "MAIN_ACTIVITY"
     }
 
     lateinit var timeViewModel: TimeViewModel
