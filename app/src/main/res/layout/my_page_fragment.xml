@@ -34,17 +34,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/editButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editButton"
             android:lineSpacingExtra="6sp"
+            android:text="edit"
             android:textColor="@color/light_blue_grey"
             android:textSize="24sp"
-            tools:text="setting"
-            android:text="edit"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="setting" />
 
         <View
             android:id="@+id/divider"
@@ -99,8 +99,8 @@
                     android:id="@+id/nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:layout_marginStart="@dimen/mai_margin_20"
+                    android:layout_marginTop="16dp"
                     android:letterSpacing="-0.02"
                     android:text="@{mypageVM.userInfo.nickname}"
                     android:textColor="#212226"
@@ -118,8 +118,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="5dp"
-                    android:text="Hello"
                     android:letterSpacing="-0.02"
+                    android:text="Hello"
                     android:textColor="#212226"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@id/ivProfile"
@@ -145,11 +145,14 @@
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     app:layout_constraintBottom_toTopOf="@id/bottomDivider"
                     app:layout_constraintTop_toTopOf="@id/topDivider"
                     app:tabGravity="center"
                     app:tabIndicatorColor="#000000"
+                    app:tabIndicatorFullWidth="false"
+                    app:tabMinWidth="0dp"
+                    app:tabMode="scrollable"
                     app:tabTextAppearance="@style/TabTextAppearance" />
 
                 <androidx.viewpager2.widget.ViewPager2
