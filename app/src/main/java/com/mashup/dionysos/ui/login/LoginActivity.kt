@@ -53,6 +53,11 @@ class LoginActivity : AppCompatActivity() {
             redirectNicknameActivity()
         }
 
+        guest_login_btn.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun init() {
@@ -135,7 +140,6 @@ class LoginActivity : AppCompatActivity() {
                 val preferencesEditor: SharedPreferences.Editor = mPreferences.edit()
                 preferencesEditor.putString(jwt, it.result.jwt)
                 preferencesEditor.apply()
-
                 startActivity(intent)
                 finish()
             }, { e ->

@@ -72,6 +72,10 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(R.layout.activity_s
                             finish()
                             super.onSuccess(result)
                         }
+
+                        override fun onCompleteLogout() {
+                            TODO("Not yet implemented")
+                        }
                     })
                 }
             }

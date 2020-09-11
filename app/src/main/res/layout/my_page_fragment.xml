@@ -81,7 +81,7 @@
                     android:id="@+id/btnEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_circle_20"
+                    android:background="@drawable/round_20"
                     android:backgroundTint="@color/dark_grey"
                     android:clickable="true"
                     android:focusable="true"

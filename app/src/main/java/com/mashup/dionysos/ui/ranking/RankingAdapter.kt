@@ -33,7 +33,6 @@ class RankingAdapter :
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = RankingItemBinding.inflate(layoutInflater, parent, false)
-
                 return ViewHolder(binding)
             }
         }
