@@ -1,9 +1,11 @@
 package com.mashup.dionysos.ui.mypage
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.mashup.dionysos.api.dto.UserInfo
+import com.mashup.dionysos.base.viewmodel.BaseViewModel
 
-class MyPageViewModel : ViewModel() {
+class MyPageViewModel (application: Application) : BaseViewModel(application) {
     val userInfo = MutableLiveData<UserInfo>()
+
 }

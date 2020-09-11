@@ -34,14 +34,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/editButton"
+            android:id="@+id/settingButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:lineSpacingExtra="6sp"
             android:text="edit"
             android:textColor="@color/light_blue_grey"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:onClick="@{()->timeVM.editMyPageClick(5)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="setting" />
@@ -84,7 +86,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:letterSpacing="-0.03"
-                    android:onClick="@{()->timeVM.editMyPageClick()}"
+                    android:onClick="@{()->timeVM.editMyPageClick(4)}"
                     android:paddingStart="6dp"
                     android:paddingTop="1dp"
                     android:paddingEnd="6dp"
