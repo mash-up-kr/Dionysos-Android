@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.mypage.MyPageEditActivity"></activity>
+        <activity android:name=".ui.setting.SettingActivity" />
+        <activity android:name=".ui.mypage.MyPageEditActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -26,8 +27,8 @@
             android:name=".ui.login.NicknameActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ui.login.WelcomActivity" />
-        <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.main.MainActivity">
+        <activity android:name=".ui.main.MainActivity"/>
+        <activity android:name=".ui.login.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

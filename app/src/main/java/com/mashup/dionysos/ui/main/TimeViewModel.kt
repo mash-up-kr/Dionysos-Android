@@ -39,8 +39,8 @@ class TimeViewModel(application: Application) : BaseViewModel(application) {
         showMainTabBar.value = true
     }
 
-    fun editMyPageClick(){
-        changeFragment.value = 4
+    fun editMyPageClick(int: Int){
+        changeFragment.value = int
     }
 
     fun timeBottomClick(int: Int) {

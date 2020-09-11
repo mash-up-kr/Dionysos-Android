@@ -39,11 +39,15 @@ class MyPageFragment : BaseFragment<MyPageFragmentBinding>(R.layout.my_page_frag
             MyPageViewPagerAdapter(
                 requireActivity()
             )
-        editNickName()
         binding.viewpager.offscreenPageLimit = 2
         TabLayoutMediator(binding.tabLayout, binding.viewpager) { tab, position ->
             tab.text = tabLayoutTextArray[position]
         }.attach()
+    }
+
+    override fun onResume() {
+        editNickName()
+        super.onResume()
     }
 
     private fun editNickName() {

@@ -22,4 +22,10 @@
 
     <string name="back">back</string>
     <string name="setting">setting</string>
+    <string name="made_by">만든이</string>
+    <string name="terms_of_use">이용약관</string>
+    <string name="designerName">Sojeong Yun\nSua Park\nSunyoung Bae</string>
+    <string name="iosName">Jercy\nJihye Kim\nDongyoung Lee</string>
+    <string name="backendName">Chipmuck\nJihee Kim\nMihyun Park</string>
+    <string name="androidName">Yuchocopie\nArim Yeon\nMyuongjun Hyun</string>
 </resources>

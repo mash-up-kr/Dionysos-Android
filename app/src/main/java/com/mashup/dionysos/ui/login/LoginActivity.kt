@@ -1,11 +1,11 @@
 package com.mashup.dionysos.ui.login
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.CallbackManager
-import com.facebook.login.widget.LoginButton
 import com.kakao.auth.AuthType
 import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
@@ -29,7 +29,12 @@ import java.util.*
 class LoginActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "LOGIN_ACTIVITY"
+        private const val sharedPrefFile = "app_preferences"
+        private const val jwt = "jwt"
     }
+
+    private lateinit var mPreferences: SharedPreferences
+
     var session: Session? = null
     var userId = "guest"
     var provider = Provider.GUEST.value
@@ -41,6 +46,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
 
         init()
         mogackgong_ko_text.setOnClickListener {
@@ -126,6 +132,10 @@ class LoginActivity : AppCompatActivity() {
             .subscribe({
                 Log.e(TAG, "success signIn $it")
                 val intent = Intent(this, MainActivity::class.java)
+                val preferencesEditor: SharedPreferences.Editor = mPreferences.edit()
+                preferencesEditor.putString(jwt, it.result.jwt)
+                preferencesEditor.apply()
+
                 startActivity(intent)
                 finish()
             }, { e ->
