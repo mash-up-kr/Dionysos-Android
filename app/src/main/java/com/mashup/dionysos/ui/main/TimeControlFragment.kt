@@ -28,14 +28,14 @@ class TimeControlFragment :
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val viewModelFactory =
-                ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        timeViewModel = ViewModelProvider(activity!!, viewModelFactory).get(TimeViewModel::class.java)
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        timeViewModel =
+            ViewModelProvider(activity!!, viewModelFactory).get(TimeViewModel::class.java)
         binding.setVariable(BR.timeVM, timeViewModel)
         increase = timeViewModel.timeDataModel.value!!.increase
+        val bottomSheet = BottomSheetStop()
 
-        if (!increase) {
-            timeViewModel.controlTime.value = timeViewModel.timeDataModel.value!!.timer
-        }
+        timeViewModel.controlTime.value = timeViewModel.timeDataModel.value!!.timer
         timeViewModel.playerStatus.observe(this, Observer { it ->
             when (it) {
                 0 -> {
@@ -46,13 +46,18 @@ class TimeControlFragment :
                     job.start()
                 }
                 2 -> {
-                    timeViewModel.playerStatus.value = -1
-                    job.cancel()
-                    parentFragmentManager.beginTransaction().remove(this).commit()
-                    parentFragmentManager.popBackStack()
+                    bottomSheet.show(fragmentManager!!, "exampleBottomSheet")
                 }
             }
 
+        })
+        timeViewModel.timerStop.observe(this, Observer { it ->
+            if (it == TimeViewModel.SelectBottomSheet.YEAH) {
+                terminateTimer()
+                timeViewModel.timerStop.value = TimeViewModel.SelectBottomSheet.DISMISS
+            } else if (it == TimeViewModel.SelectBottomSheet.NOPE) {
+                timeViewModel.timerStop.value = TimeViewModel.SelectBottomSheet.DISMISS
+            }
         })
 
         job = CoroutineScope(Dispatchers.Default).launch {
@@ -63,6 +68,14 @@ class TimeControlFragment :
                 Thread.sleep(increaseTime)
             }
         }
+    }
+
+    private fun terminateTimer() {
+        timeViewModel.playerStatus.value = -1
+        job.cancel()
+        parentFragmentManager.beginTransaction().remove(this).commit()
+        parentFragmentManager.popBackStack()
+        timeViewModel.showMainTabBar.value = true
     }
 
     private fun increasePlayTime() {

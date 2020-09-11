@@ -20,7 +20,7 @@ class MainHomeFragment :
         super.onActivityCreated(savedInstanceState)
         val viewModelFactory =
                 ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        val bottomSheet = BottomSheetDialog()
+        val bottomSheet = BottomSheetTimeLapse()
         timeViewModel = ViewModelProvider(activity!!, viewModelFactory).get(TimeViewModel::class.java)
         binding.setVariable(BR.timeVM, timeViewModel)
         bottomSheet.timeViewModel = timeViewModel
@@ -44,17 +44,17 @@ class MainHomeFragment :
         timeViewModel.timeLapse.observe(this, Observer { it ->
             if (timeViewModel.fragmentChange.value == TimeViewModel.SelectFragment.TIMER) {
                 when (it) {
-                    TimeViewModel.SelectTimeLapse.YEAH, TimeViewModel.SelectTimeLapse.NOPE -> {
+                    TimeViewModel.SelectBottomSheet.YEAH, TimeViewModel.SelectBottomSheet.NOPE -> {
                         timeViewModel.popFragment.value = true
                     }
                 }
             }
-            if (it == TimeViewModel.SelectTimeLapse.YEAH) {
+            if (it == TimeViewModel.SelectBottomSheet.YEAH) {
                 Log.e("fragmentChange", "카메라")
-                timeViewModel.timeLapse.value = TimeViewModel.SelectTimeLapse.DISMISS
-            } else if (it == TimeViewModel.SelectTimeLapse.NOPE) {
+                timeViewModel.timeLapse.value = TimeViewModel.SelectBottomSheet.DISMISS
+            } else if (it == TimeViewModel.SelectBottomSheet.NOPE) {
                 replaceFragment(TimeControlFragment.newInstance())
-                timeViewModel.timeLapse.value = TimeViewModel.SelectTimeLapse.DISMISS
+                timeViewModel.timeLapse.value = TimeViewModel.SelectBottomSheet.DISMISS
             }
         })
     }

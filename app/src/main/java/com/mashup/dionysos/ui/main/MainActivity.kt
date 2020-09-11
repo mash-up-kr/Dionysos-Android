@@ -47,7 +47,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
                     transaction.replace(R.id.fragmentMainTap, mainHomeFragment).commit()
-
                 }
                 3 -> {
                     val fragmentManager = supportFragmentManager

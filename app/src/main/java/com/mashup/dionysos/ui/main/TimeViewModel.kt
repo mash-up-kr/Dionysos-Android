@@ -20,9 +20,10 @@ class TimeViewModel(application: Application) : BaseViewModel(application) {
     var showMainTabBar = MutableLiveData<Boolean>()
 
     val timerClickable = MutableLiveData(TimerSetting())
-    var timeLapse = MutableLiveData<SelectTimeLapse>()
+    var timeLapse = MutableLiveData<SelectBottomSheet>()
+    var timerStop = MutableLiveData<SelectBottomSheet>()
 
-    enum class SelectTimeLapse { NON, YEAH, NOPE, DISMISS }
+    enum class SelectBottomSheet { NON, YEAH, NOPE, DISMISS }
     enum class SelectFragment { Home, Setting, STOP, TIMER, BottomSheet }
 
     var playerStatus = MutableLiveData<Int>()
@@ -87,20 +88,26 @@ class TimeViewModel(application: Application) : BaseViewModel(application) {
 
     private fun onClickFragmentStopWatch() {
         timeDataModel.value!!.timer = 0
-        timeDataModel.value!!.increase = false
+        timeDataModel.value!!.increase = true
         timeDataModel.value = timeDataModel.value
+        Log.e("qwew", "" + timeDataModel.value!!)
+
     }
 
 
     fun onClickSelectTimerFragment(select: SelectFragment) {
         when (select) {
-            SelectFragment.STOP -> onClickFragmentStopWatch()
-            else -> fragmentChange.value = select
+            SelectFragment.BottomSheet -> onClickFragmentStopWatch()
         }
+        fragmentChange.value = select
     }
 
-    fun onClickSelectTimeLapse(select: SelectTimeLapse) {
+    fun onClickSelectTimeLapse(select: SelectBottomSheet) {
         timeLapse.value = select
+    }
+
+    fun onClickSelectTimerStop(select: SelectBottomSheet) {
+        timerStop.value = select
     }
 
     fun onClickPlayer(position: Int) {

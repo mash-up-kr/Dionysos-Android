@@ -10,22 +10,19 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mashup.dionysos.BR
 import com.mashup.dionysos.R
-import com.mashup.dionysos.databinding.BottomSheetLayoutBinding
+import com.mashup.dionysos.databinding.BottomSheetStopBinding
 
 
-class BottomSheetDialog : BottomSheetDialogFragment() {
+class BottomSheetStop : BottomSheetDialogFragment() {
 
     lateinit var timeViewModel: TimeViewModel
-    lateinit var binding: BottomSheetLayoutBinding
+    lateinit var binding: BottomSheetStopBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.bottom_sheet_layout, container, false
+            inflater, R.layout.bottom_sheet_stop, container, false
         )
         binding.lifecycleOwner = this
         return binding.root
@@ -38,10 +35,11 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
         timeViewModel =
             ViewModelProvider(activity!!, viewModelFactory).get(TimeViewModel::class.java)
         binding.setVariable(BR.timeVM, timeViewModel)
-        timeViewModel.timeLapse.observe(this, Observer { it ->
-            if (it == TimeViewModel.SelectTimeLapse.DISMISS){
+
+        timeViewModel.timerStop.observe(this, Observer { it ->
+            if (it == TimeViewModel.SelectBottomSheet.DISMISS){
                 dismiss()
-                timeViewModel.timeLapse.value=TimeViewModel.SelectTimeLapse.NON
+                timeViewModel.timerStop.value=TimeViewModel.SelectBottomSheet.NON
             }
         })
     }
@@ -50,7 +48,7 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
         R.style.BottomSheetDialogTheme
 
     companion object {
-        val instance: BottomSheetDialog
-            get() = BottomSheetDialog()
+        val instance: BottomSheetStop
+            get() = BottomSheetStop()
     }
 }

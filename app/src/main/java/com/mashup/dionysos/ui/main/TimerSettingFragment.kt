@@ -19,7 +19,7 @@ class TimerSettingFragment :
         super.onActivityCreated(savedInstanceState)
         val viewModelFactory =
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        val bottomSheet = BottomSheetDialog()
+        val bottomSheet = BottomSheetTimeLapse()
         timeViewModel =
             ViewModelProvider(activity!!, viewModelFactory).get(TimeViewModel::class.java)
         binding.setVariable(BR.timeVM, timeViewModel)
