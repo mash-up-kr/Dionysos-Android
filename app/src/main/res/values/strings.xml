@@ -19,6 +19,9 @@
 
     <string name="kakao_app_key">c1f999149d3e2024f1ed25b744bed861</string>
     <string name="facebook_app_key">309621503723266</string>
+    <string name="facebook_app_id">2760164710881417</string>
+    <string name="fb_login_protocol_scheme">fb2760164710881417</string>
+
 
     <string name="back">back</string>
     <string name="setting">setting</string>

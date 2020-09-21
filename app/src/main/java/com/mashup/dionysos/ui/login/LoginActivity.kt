@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginResult
 import com.kakao.auth.AuthType
 import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
@@ -63,6 +66,8 @@ class LoginActivity : AppCompatActivity() {
     private fun init() {
         initSession()
         setListeners()
+        val keyHash = com.kakao.util.helper.Utility.getKeyHash(this /* context */)
+        Log.d("loloss", keyHash)
     }
 
     private fun initSession() {
@@ -82,8 +87,20 @@ class LoginActivity : AppCompatActivity() {
             session!!.open(AuthType.KAKAO_ACCOUNT, this)
         }
         facebook_login_btn.setOnClickListener {
-            facebook_login_btn.setReadPermissions(Arrays.asList("public_profile", "email"))
-            facebook_login_btn.registerCallback(mCallbackManager, mLoginCallback)
+            facebook_login_btn.registerCallback(mCallbackManager, object : FacebookCallback<LoginResult> {
+                override fun onSuccess(result: LoginResult?) {
+                    redirectNicknameActivity()
+                }
+
+                override fun onCancel() {
+                    //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+                override fun onError(error: FacebookException?) {
+                    //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+            })
         }
     }
 
@@ -118,7 +135,7 @@ class LoginActivity : AppCompatActivity() {
                 // 사용자정보 요청에 성공한 경우,
                 override fun onSuccess(result: MeV2Response) {
                     val uid = java.lang.Long.toString(result.id)
-                    provider =  Provider.KAKAO.value
+                    provider = Provider.KAKAO.value
                     userId = uid
                     redirectNicknameActivity()
                 }
@@ -159,9 +176,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(
-            requestCode: Int,
-            resultCode: Int,
-            data: Intent?
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
     ) {
         // 카카오톡|스토리 간편로그인 실행 결과를 받아서 SDK로 전달
         if (Session.getCurrentSession()
@@ -170,7 +187,8 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        //mCallbackManager.onActivityResult(requestCode, resultCode, data)
+        //Log.d("loloss", "$requestCode  $resultCode")
+        mCallbackManager?.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
     }
 
