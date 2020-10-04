@@ -21,16 +21,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        style="@style/Body1"
         android:id="@+id/nickname_edit_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/mai_margin_20"
+        android:layout_marginTop="@dimen/nickname_hear_margin_top"
         android:background="@android:color/transparent"
         android:hint="@string/here"
         android:inputType="textNoSuggestions|textVisiblePassword"
         android:textColor="@color/dark_grey"
         android:textCursorDrawable="@drawable/text_cursor"
-        android:textSize="@dimen/text_16"
         app:layout_constraintStart_toStartOf="@+id/nickname_title_text"
         app:layout_constraintTop_toBottomOf="@+id/nickname_title_text" />
 
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textColor="@color/coral_pink"
-        android:textSize="@dimen/text_14"
+        style="@style/Body2"
         app:layout_constraintStart_toStartOf="@id/nickname_title_text"
         app:layout_constraintTop_toBottomOf="@+id/nickname_edit_text" />
 

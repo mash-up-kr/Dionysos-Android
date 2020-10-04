@@ -20,4 +20,6 @@
 
     <color name="setting_text">#707074</color>
     <color name="white">#fff</color>
+    <color name="basic_black">#212226</color>
+    <color name="basic_grey_2">#cdd0d4</color>
 </resources>

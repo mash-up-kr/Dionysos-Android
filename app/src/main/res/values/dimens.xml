@@ -14,7 +14,10 @@
     <dimen name="mai_margin_36">36dp</dimen>
     <dimen name="loginBtnHeight">44dp</dimen>
     <dimen name="loginBtnMarginRow">30dp</dimen>
-    <dimen name="loginBtnText">19sp</dimen>
+    <dimen name="login_btn_text">14sp</dimen>
     <dimen name="bottom_sheet_detail_text_margin_top">10dp</dimen>
     <dimen name="bottom_sheet_title_margin_top">32dp</dimen>
+    <dimen name="login_title_margin_top">88dp</dimen>
+    <dimen name="login_btn_margin_top">14dp</dimen>
+    <dimen name="nickname_hear_margin_top">25dp</dimen>
 </resources>
