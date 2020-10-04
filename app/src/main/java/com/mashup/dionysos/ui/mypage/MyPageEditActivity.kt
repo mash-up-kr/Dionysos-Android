@@ -8,6 +8,7 @@ import android.widget.EditText
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.mashup.dionysos.R
+import com.mashup.dionysos.api.MogakgongApi
 import com.mashup.dionysos.api.dto.ReqEditNickName
 import com.mashup.dionysos.base.activity.BaseActivity
 import com.mashup.dionysos.databinding.ActivityMyPageEditBinding
@@ -21,6 +22,8 @@ class MyPageEditActivity : BaseActivity<ActivityMyPageEditBinding>(R.layout.acti
         private const val TAG = "MY_PAGE_EDIT_ACTIVIY"
     }
 
+    private lateinit var repository: MogakgongApi
+
     lateinit var timeViewModel: TimeViewModel
     lateinit var myPageViewModel: MyPageViewModel
 
@@ -28,6 +31,10 @@ class MyPageEditActivity : BaseActivity<ActivityMyPageEditBinding>(R.layout.acti
         super.onCreate(savedInstanceState)
         initMainDataBinding()
         Log.e(TAG, ":  onCreateView")
+
+        repository = getMogakgongApi()
+        timeViewModel.repository = repository
+
         editNickName()
         nickname_edit.afterTextChanged {
             checkSaveBtn(it)

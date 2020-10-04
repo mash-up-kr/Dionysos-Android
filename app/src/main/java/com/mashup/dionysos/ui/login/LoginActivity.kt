@@ -44,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
 
     private var mLoginCallback: LoginCallback? = null
     private var mCallbackManager: CallbackManager? = null
-    private val repository = MogakgongRetrofit.getService()
+    private val repository = MogakgongRetrofit().getService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -3,6 +3,7 @@ package com.mashup.dionysos.ui.main
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.mashup.dionysos.api.MogakgongApi
 import com.mashup.dionysos.base.viewmodel.BaseViewModel
 import com.mashup.dionysos.model.MainModel
 import com.mashup.dionysos.model.PlayModel
@@ -11,6 +12,7 @@ import com.mashup.dionysos.model.TimerSetting
 class TimeViewModel(application: Application) : BaseViewModel(application) {
     val controlTime = MutableLiveData<Long>(0)
 
+    lateinit var repository: MogakgongApi
     val timeDataModel =
         MutableLiveData(PlayModel(playStatus = false, increase = true, totalTime = 0L))
     val mainBottom = MutableLiveData(MainModel(ranking = false, home = true, myPage = false))

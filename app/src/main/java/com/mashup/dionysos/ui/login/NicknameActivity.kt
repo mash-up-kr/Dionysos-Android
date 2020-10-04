@@ -23,7 +23,7 @@ class NicknameActivity : AppCompatActivity() {
     }
     private var userId:String? = null
     private var provider:String?= null
-    private val repository = MogakgongRetrofit.getService()
+    private val repository = MogakgongRetrofit().getService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

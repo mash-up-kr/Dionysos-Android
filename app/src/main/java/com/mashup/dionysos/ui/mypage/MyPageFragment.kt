@@ -1,11 +1,16 @@
 package com.mashup.dionysos.ui.mypage
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mashup.dionysos.BR
 import com.mashup.dionysos.R
+import com.mashup.dionysos.api.MogakgongApi
+import com.mashup.dionysos.api.MogakgongRetrofit
+import com.mashup.dionysos.base.activity.BaseActivity
 import com.mashup.dionysos.base.fragment.BaseFragment
 import com.mashup.dionysos.databinding.MyPageFragmentBinding
 import com.mashup.dionysos.ui.main.TimeViewModel
@@ -18,7 +23,6 @@ class MyPageFragment : BaseFragment<MyPageFragmentBinding>(R.layout.my_page_frag
     companion object {
         fun newInstance() = MyPageFragment()
     }
-
     private lateinit var myPageViewModel: MyPageViewModel
     private lateinit var timeViewModel: TimeViewModel
 
@@ -31,6 +35,8 @@ class MyPageFragment : BaseFragment<MyPageFragmentBinding>(R.layout.my_page_frag
         myPageViewModel = ViewModelProvider(this, viewModelFactory).get(MyPageViewModel::class.java)
         timeViewModel =
             ViewModelProvider(activity!!, viewModelFactory).get(TimeViewModel::class.java)
+        lateinit var mPreferences: SharedPreferences
+
         binding.setVariable(BR.timeVM, timeViewModel)
         binding.setVariable(BR.mypageVM, myPageViewModel)
 
@@ -51,7 +57,7 @@ class MyPageFragment : BaseFragment<MyPageFragmentBinding>(R.layout.my_page_frag
     }
 
     private fun editNickName() {
-        repository.reqGetNickName()
+        timeViewModel.repository.reqGetNickName()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({

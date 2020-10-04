@@ -10,8 +10,8 @@ import com.mashup.dionysos.base.activity.BaseActivity
 import com.mashup.dionysos.databinding.ActivityMainBinding
 import com.mashup.dionysos.ui.mypage.MyPageEditActivity
 import com.mashup.dionysos.ui.mypage.MyPageFragment
-import com.mashup.dionysos.ui.setting.SettingActivity
 import com.mashup.dionysos.ui.ranking.RankingFragment
+import com.mashup.dionysos.ui.setting.SettingActivity
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -28,11 +28,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
         initMainDataBinding()
         Log.e(TAG, ":  onCreateView")
-        preferencesEditor = mPreferences.edit()
-//        로그인 성공시에 토큰값,, 스플레시 화면 만들면 바로 여기로 보내기
-//        val jwt = mPreferences.getString(jwt, "null")
-//        Log.e(TAG, "jwt:  jwt")
 
+        val repository = getMogakgongApi()
+        timeViewModel.repository = repository
         timeViewModel.changeFragment.observe(this, Observer { it ->
             Log.e(TAG, ":  changeFragment $it")
 
