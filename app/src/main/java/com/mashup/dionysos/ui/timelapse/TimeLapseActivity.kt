@@ -8,6 +8,7 @@ import com.mashup.dionysos.R
 import com.mashup.dionysos.base.activity.BaseActivity
 import com.mashup.dionysos.databinding.ActivityTimelapseBinding
 import java.text.SimpleDateFormat
+import java.util.*
 
 class TimeLapseActivity : BaseActivity<ActivityTimelapseBinding>(R.layout.activity_timelapse) {
     companion object {
@@ -21,9 +22,9 @@ class TimeLapseActivity : BaseActivity<ActivityTimelapseBinding>(R.layout.activi
         initMainDataBinding()
         observers()
         startFragment(TimeLapseViewModel.TimeLapseStatue.CREATE)
-
-        val simpleDate = SimpleDateFormat("MMddhhmmss").toString()
-        timeLapseViewModel.setFileName(simpleDate)
+        val simpleDate = SimpleDateFormat("MMddhhmmss")
+        val getTime = simpleDate.format(Date(System.currentTimeMillis()))
+        timeLapseViewModel.setFileName(getTime)
     }
 
     private fun observers() {

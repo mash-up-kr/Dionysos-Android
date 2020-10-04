@@ -11,7 +11,7 @@ class TimeLapseViewModel(application: Application) : BaseViewModel(application) 
         private set
     val controlTime = MutableLiveData<Long>(0)
     var mCameraFacing = MutableLiveData(1)
-    var isPlay = MutableLiveData(false)
+    var isPlay = MutableLiveData(true)
     var fragmentTerminate = MutableLiveData<Boolean>()
     var changeFragment = MutableLiveData<TimeLapseStatue>(TimeLapseStatue.CREATE)
 

@@ -1,5 +1,6 @@
 package com.mashup.dionysos.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import com.mashup.dionysos.R
 import com.mashup.dionysos.base.fragment.BaseFragment
 import com.mashup.dionysos.base.viewmodel.BaseViewModel
 import com.mashup.dionysos.databinding.FragmentMainHomeBinding
+import com.mashup.dionysos.ui.timelapse.TimeLapseActivity
 
 
 class MainHomeFragment :
@@ -53,6 +55,8 @@ class MainHomeFragment :
             if (it == BaseViewModel.SelectBottomSheet.YEAH) {
                 Log.e("fragmentChange", "카메라")
                 timeViewModel.timeLapse.value = BaseViewModel.SelectBottomSheet.DISMISS
+                val intent = Intent(activity, TimeLapseActivity::class.java)
+                startActivity(intent)
             } else if (it == BaseViewModel.SelectBottomSheet.NOPE) {
                 replaceFragment(TimeControlFragment.newInstance())
                 timeViewModel.timeLapse.value = BaseViewModel.SelectBottomSheet.DISMISS

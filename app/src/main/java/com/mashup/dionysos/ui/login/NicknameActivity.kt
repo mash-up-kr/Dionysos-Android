@@ -12,13 +12,10 @@ import com.mashup.dionysos.R
 import com.mashup.dionysos.api.MogakgongRetrofit
 import com.mashup.dionysos.api.dto.Provider
 import com.mashup.dionysos.api.dto.ReqNicknameCheck
-import com.mashup.dionysos.api.dto.ReqSignIn
 import com.mashup.dionysos.api.dto.ReqSignUp
-import com.mashup.dionysos.ui.main.MainActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_nickname.*
-import retrofit2.adapter.rxjava3.HttpException
 
 class NicknameActivity : AppCompatActivity() {
     companion object {
