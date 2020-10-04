@@ -76,7 +76,7 @@ class TimeLapseCameraFragment :
         val folderName = basePath + title
         if (Build.VERSION.SDK_INT > 24) {
             val rc =
-                FFmpeg.execute("-r 2 -start_number 00000 -i ${basePath}${title}/%05d.jpg ${basePath}${title}.mp4")
+                FFmpeg.execute("-r 6 -start_number 00000 -i ${basePath}${title}/%05d.jpg ${basePath}${title}.mp4")
 
             when (rc) {
                 Config.RETURN_CODE_SUCCESS -> {
@@ -99,14 +99,20 @@ class TimeLapseCameraFragment :
             }
         } else {
         }
+    }
+
+    override fun onDestroy() {
+        val title = timeLapseViewModel.fileName
+        val folderName = basePath + title
         setDirEmpty(folderName)
+        super.onDestroy()
     }
 
     private fun setDirEmpty(path: String) {
         val dir = File(path)
         val childFileList = dir.listFiles()
-        for (j in childFileList.indices) {
-            childFileList[j].delete()
+        childFileList?.forEach {
+            it.delete()
         }
         if (dir.exists()) {
             dir.delete()
