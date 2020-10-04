@@ -1,8 +1,6 @@
 package com.mashup.dionysos
 
-import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
@@ -18,4 +16,9 @@ fun bindUrl(view: ImageView, imageUrl: String?) {
 @BindingAdapter("android:bind_int")
 fun bindResource(view: ImageView, image: Int) {
     view.setImageResource(image)
+}
+
+@BindingAdapter("app:front")
+fun bindTimeLaps(view: com.mashup.dionysos.ui.timelapse.CameraPreview, int: Int) {
+  view.mCameraFacing = int
 }

@@ -82,6 +82,7 @@ class TimeControlFragment :
         timeViewModel?.let { it_ ->
             var base = it_.controlTime.value!!
             val timeDataModel = it_.timeDataModel.value!!
+
             if (increase) {
                 base += increaseTime
                 timeDataModel.totalTime += increaseTime

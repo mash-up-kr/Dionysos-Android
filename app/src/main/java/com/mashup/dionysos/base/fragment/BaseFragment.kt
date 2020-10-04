@@ -12,6 +12,7 @@ import com.mashup.dionysos.api.MogakgongRetrofit
 abstract class BaseFragment<B : ViewDataBinding>(private val layoutId: Int) : Fragment() {
     lateinit var binding: B
     val repository = MogakgongRetrofit.getService()
+    val basePath = "/data/data/com.mashup.dionysos/files/"
 
     override fun onCreateView(
         inflater: LayoutInflater,

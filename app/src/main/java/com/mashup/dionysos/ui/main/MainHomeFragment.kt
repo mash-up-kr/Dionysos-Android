@@ -66,7 +66,6 @@ class MainHomeFragment :
             val transaction = fragmentManager!!.beginTransaction()
             transaction.addToBackStack(null)
             transaction.replace(R.id.fragment_time_control, fragment).commit();
-
         }
     }
 
