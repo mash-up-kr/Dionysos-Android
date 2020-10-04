@@ -7,16 +7,29 @@ import com.mashup.dionysos.base.viewmodel.BaseViewModel
 import com.mashup.dionysos.model.PlayModel
 
 class TimeLapseViewModel(application: Application) : BaseViewModel(application) {
-    var mCameraFacing = MutableLiveData<Int>(1)
-    var mCameraStop = MutableLiveData<Boolean>(false)
-    var fragmentTerminate = MutableLiveData<Boolean>()
+    var fileName = "timeLapse"
+        private set
     val controlTime = MutableLiveData<Long>(0)
+    var mCameraFacing = MutableLiveData(1)
+    var isPlay = MutableLiveData(false)
+    var fragmentTerminate = MutableLiveData<Boolean>()
+    var changeFragment = MutableLiveData<TimeLapseStatue>(TimeLapseStatue.CREATE)
 
-    val fileName = "how"
+    var bottomSheet = MutableLiveData<SelectBottomSheet>(SelectBottomSheet.NON)
+
+    enum class TimeLapseStatue { CREATE, BOTTOM_SHEET, PLAY, TERMINATED }
+
 
     val timeDataModel =
         MutableLiveData(PlayModel(playStatus = false, increase = true, totalTime = 0L))
 
+    fun setFileName(string: String) {
+        fileName = string
+    }
+
+    fun onClickSelectBottomSheet(select: SelectBottomSheet) {
+        bottomSheet.value = select
+    }
 
     fun onClickRecodeFlip() {
         mCameraFacing.value = if (mCameraFacing.value == 0) 1 else 0
@@ -24,7 +37,14 @@ class TimeLapseViewModel(application: Application) : BaseViewModel(application) 
     }
 
     fun onClickRecodeStop() {
-        Log.e("onClickRecodeStop","  ")
-        mCameraStop.value = true
+        Log.e("onClickRecodeStop", "  ")
+        isPlay.value = !isPlay.value!!
     }
+
+    fun onClickRecodeClose() {
+        Log.e("onClickRecodeStop", "  ")
+        changeFragment.value = TimeLapseStatue.BOTTOM_SHEET
+    }
+
 }
+

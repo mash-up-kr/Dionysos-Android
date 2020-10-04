@@ -31,4 +31,6 @@
     <string name="iosName">Jercy\nJihye Kim\nDongyoung Lee</string>
     <string name="backendName">Chipmuck\nJihee Kim\nMihyun Park</string>
     <string name="androidName">Yuchocopie\nArim Yeon\nMyuongjun Hyun</string>
+    <string name="terminated_timelaps">정말 종료하시나요?</string>
+    <string name="change_thumbnail_page">썸네일 선택 화면으로 이동합니다.</string>
 </resources>

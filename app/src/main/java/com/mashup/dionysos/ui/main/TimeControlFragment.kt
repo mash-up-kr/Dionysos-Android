@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.mashup.dionysos.BR
 import com.mashup.dionysos.R
 import com.mashup.dionysos.base.fragment.BaseFragment
+import com.mashup.dionysos.base.viewmodel.BaseViewModel
 import com.mashup.dionysos.databinding.FragmentTimeControlBinding
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
@@ -52,11 +53,11 @@ class TimeControlFragment :
 
         })
         timeViewModel.timerStop.observe(this, Observer { it ->
-            if (it == TimeViewModel.SelectBottomSheet.YEAH) {
+            if (it == BaseViewModel.SelectBottomSheet.YEAH) {
                 terminateTimer()
-                timeViewModel.timerStop.value = TimeViewModel.SelectBottomSheet.DISMISS
-            } else if (it == TimeViewModel.SelectBottomSheet.NOPE) {
-                timeViewModel.timerStop.value = TimeViewModel.SelectBottomSheet.DISMISS
+                timeViewModel.timerStop.value = BaseViewModel.SelectBottomSheet.DISMISS
+            } else if (it == BaseViewModel.SelectBottomSheet.NOPE) {
+                timeViewModel.timerStop.value = BaseViewModel.SelectBottomSheet.DISMISS
             }
         })
 

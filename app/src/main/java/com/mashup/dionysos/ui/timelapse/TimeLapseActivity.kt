@@ -1,43 +1,69 @@
 package com.mashup.dionysos.ui.timelapse
 
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mashup.dionysos.R
 import com.mashup.dionysos.base.activity.BaseActivity
 import com.mashup.dionysos.databinding.ActivityTimelapseBinding
+import java.text.SimpleDateFormat
 
 class TimeLapseActivity : BaseActivity<ActivityTimelapseBinding>(R.layout.activity_timelapse) {
     companion object {
         private const val TAG = "TIME_LAPSE_ACTIVITY"
     }
 
-    private lateinit var timeLapsViewModel: TimeLapseViewModel
+    private lateinit var timeLapseViewModel: TimeLapseViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         initMainDataBinding()
         observers()
-        startFragment()
+        startFragment(TimeLapseViewModel.TimeLapseStatue.CREATE)
+
+        val simpleDate = SimpleDateFormat("MMddhhmmss").toString()
+        timeLapseViewModel.setFileName(simpleDate)
     }
 
     private fun observers() {
-        timeLapsViewModel.fragmentTerminate.observe(this, Observer {
-            startFragment()
+        timeLapseViewModel.fragmentTerminate.observe(this, Observer {
+            startFragment(TimeLapseViewModel.TimeLapseStatue.CREATE)
+        })
+
+        timeLapseViewModel.changeFragment.observe(this, Observer {
+            when (it) {
+                TimeLapseViewModel.TimeLapseStatue.BOTTOM_SHEET -> {
+                    Log.e("BOTTOM_SHEET", "BOTTOM_SHEET")
+                    val fragmentManager = supportFragmentManager
+                    val bottomSheet = BottomSheetTerminatedTimeLapse()
+                    bottomSheet.timeLapseViewModel = timeLapseViewModel
+                    bottomSheet.show(fragmentManager, " timeLapseBottomSheet")
+                }
+                TimeLapseViewModel.TimeLapseStatue.PLAY -> {
+                    startFragment(TimeLapseViewModel.TimeLapseStatue.PLAY)
+                }
+                else -> {
+
+                }
+            }
         })
     }
 
-    private fun startFragment() {
+    private fun startFragment(create: TimeLapseViewModel.TimeLapseStatue) {
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.fragmentTimeLapse, TimeLapseCameraFragment()).commit()
+        if (create == TimeLapseViewModel.TimeLapseStatue.CREATE) {
+            transaction.replace(R.id.fragmentTimeLapse, TimeLapseCameraFragment()).commit()
+        } else if (create == TimeLapseViewModel.TimeLapseStatue.PLAY) {
+            transaction.replace(R.id.fragmentTimeLapse, TimeLapseViewFragment()).commit()
+        }
     }
 
     private fun initMainDataBinding() {
         val viewModelFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-        timeLapsViewModel =
+        timeLapseViewModel =
             ViewModelProvider(this, viewModelFactory).get(TimeLapseViewModel::class.java)
-        binding.timeLapseVM = timeLapsViewModel
+        binding.timeLapseVM = timeLapseViewModel
     }
 }

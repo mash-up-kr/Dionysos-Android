@@ -23,7 +23,6 @@ class TimeViewModel(application: Application) : BaseViewModel(application) {
     var timeLapse = MutableLiveData<SelectBottomSheet>()
     var timerStop = MutableLiveData<SelectBottomSheet>()
 
-    enum class SelectBottomSheet { NON, YEAH, NOPE, DISMISS }
     enum class SelectFragment { Home, Setting, STOP, TIMER, BottomSheet }
 
     var playerStatus = MutableLiveData<Int>()

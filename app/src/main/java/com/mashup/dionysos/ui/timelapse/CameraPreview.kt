@@ -26,7 +26,7 @@ class CameraPreview @JvmOverloads constructor(
 
     private lateinit var job: Job
     private val increaseTime = 1000L
-    var playStatus = true
+    var playStatus = false
     var increase = true
 
     private var safeToTakePicture = false
@@ -55,8 +55,8 @@ class CameraPreview @JvmOverloads constructor(
 
     override fun surfaceCreated(p0: SurfaceHolder) {
         Log.e("surfaceCreated", " ::  ")
-
         facing()
+
         job = CoroutineScope(Dispatchers.IO).launch {
             while (isActive) {
                 if (playStatus) {
@@ -104,7 +104,7 @@ class CameraPreview @JvmOverloads constructor(
         return (mCamera != null)
     }
 
-    var fileNum = 0
+    private var fileNum = 0
     private var jpegCallback =
         PictureCallback { data: ByteArray?, camera: Camera? ->
             mCamera?.startPreview()
@@ -122,8 +122,6 @@ class CameraPreview @JvmOverloads constructor(
             } catch (e: IOException) {
                 e.printStackTrace();
             }
-
-
             fileNum++
             safeToTakePicture = true;
         }
@@ -131,7 +129,6 @@ class CameraPreview @JvmOverloads constructor(
 
     private fun facing() {
         Log.e("mCameraFacing", " ::   $mCameraFacing")
-
         mCamera = Camera.open(mCameraFacing)
         mCamera?.let {
             it.setDisplayOrientation(90) // 이게 없으면 미리보기 화면이 회전되어 나온다.

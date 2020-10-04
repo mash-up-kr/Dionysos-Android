@@ -1,4 +1,4 @@
-package com.mashup.dionysos.ui.main
+package com.mashup.dionysos.ui.timelapse
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,20 +11,19 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mashup.dionysos.BR
 import com.mashup.dionysos.R
 import com.mashup.dionysos.base.viewmodel.BaseViewModel
-import com.mashup.dionysos.databinding.BottomSheetTimelapsBinding
+import com.mashup.dionysos.databinding.BottomSheetTerminatedTimelapsBinding
 
 
-class BottomSheetTimeLapse : BottomSheetDialogFragment() {
+class BottomSheetTerminatedTimeLapse : BottomSheetDialogFragment() {
 
-    lateinit var timeViewModel: TimeViewModel
-    lateinit var binding: BottomSheetTimelapsBinding
+    lateinit var timeLapseViewModel: TimeLapseViewModel
+    lateinit var binding: BottomSheetTerminatedTimelapsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.bottom_sheet_timelaps, container, false
+            inflater, R.layout.bottom_sheet_terminated_timelaps, container, false
         )
         binding.lifecycleOwner = this
         return binding.root
@@ -34,13 +33,13 @@ class BottomSheetTimeLapse : BottomSheetDialogFragment() {
         super.onActivityCreated(savedInstanceState)
         val viewModelFactory =
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        timeViewModel =
-            ViewModelProvider(activity!!, viewModelFactory).get(TimeViewModel::class.java)
-        binding.setVariable(BR.timeVM, timeViewModel)
-        timeViewModel.timeLapse.observe(this, Observer { it ->
+        timeLapseViewModel = ViewModelProvider(activity!!, viewModelFactory).get(TimeLapseViewModel::class.java)
+        binding.setVariable(BR.timeLapseVM, timeLapseViewModel)
+
+        timeLapseViewModel.bottomSheet.observe(this, Observer { it ->
             if (it == BaseViewModel.SelectBottomSheet.DISMISS) {
                 dismiss()
-                timeViewModel.timeLapse.value = BaseViewModel.SelectBottomSheet.NON
+                timeLapseViewModel.bottomSheet.value = BaseViewModel.SelectBottomSheet.NON
             }
         })
     }
@@ -49,7 +48,7 @@ class BottomSheetTimeLapse : BottomSheetDialogFragment() {
         R.style.BottomSheetDialogTheme
 
     companion object {
-        val instance: BottomSheetTimeLapse
-            get() = BottomSheetTimeLapse()
+        val instance: BottomSheetTerminatedTimeLapse
+            get() = BottomSheetTerminatedTimeLapse()
     }
 }

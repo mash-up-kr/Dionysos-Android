@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mashup.dionysos.BR
 import com.mashup.dionysos.R
+import com.mashup.dionysos.base.viewmodel.BaseViewModel
 import com.mashup.dionysos.databinding.BottomSheetStopBinding
 
 
@@ -37,9 +38,9 @@ class BottomSheetStop : BottomSheetDialogFragment() {
         binding.setVariable(BR.timeVM, timeViewModel)
 
         timeViewModel.timerStop.observe(this, Observer { it ->
-            if (it == TimeViewModel.SelectBottomSheet.DISMISS){
+            if (it == BaseViewModel.SelectBottomSheet.DISMISS){
                 dismiss()
-                timeViewModel.timerStop.value=TimeViewModel.SelectBottomSheet.NON
+                timeViewModel.timerStop.value= BaseViewModel.SelectBottomSheet.NON
             }
         })
     }

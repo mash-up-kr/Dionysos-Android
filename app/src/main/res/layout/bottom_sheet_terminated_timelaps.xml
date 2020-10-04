@@ -3,11 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <import type="com.mashup.dionysos.base.viewmodel.BaseViewModel.SelectBottomSheet" />
         <variable
-            name="timeVM"
-            type="com.mashup.dionysos.ui.main.TimeViewModel" />
+            name="timeLapseVM"
+            type="com.mashup.dionysos.ui.timelapse.TimeLapseViewModel" />
     </data>
 
     <LinearLayout
@@ -23,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/bottom_sheet_title_margin_top"
-            android:text="정말 종료하시나요?"
+            android:text="@string/terminated_timelaps"
             android:textColor="@color/dark_grey"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -33,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/bottom_sheet_detail_text_margin_top"
-            android:text="홈 화면으로 이동합니다."
+            android:text="@string/change_thumbnail_page"
             android:textColor="@color/dark_grey"
             android:textSize="15sp" />
 
@@ -50,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:onClick="@{()->timeVM.onClickSelectTimerStop(SelectBottomSheet.NOPE)}"
+                android:onClick="@{()->timeLapseVM.onClickSelectBottomSheet(SelectBottomSheet.NOPE)}"
                 android:src="@drawable/ic_btn_no"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -61,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/mai_margin_10"
-                android:onClick="@{()->timeVM.onClickSelectTimerStop(SelectBottomSheet.YEAH)}"
+                android:onClick="@{()->timeLapseVM.onClickSelectBottomSheet(SelectBottomSheet.YEAH)}"
                 android:src="@drawable/ic_btn_yes"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

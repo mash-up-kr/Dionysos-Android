@@ -44,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_close_40"
+            android:onClick="@{()->timeLapseVM.onClickRecodeClose()}"
             app:layout_constraintBottom_toBottomOf="@id/btnRecodeStop"
             app:layout_constraintEnd_toStartOf="@id/btnRecodeStop"
             app:layout_constraintStart_toStartOf="parent"

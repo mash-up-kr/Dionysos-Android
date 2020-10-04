@@ -13,6 +13,7 @@ import com.arthenica.mobileffmpeg.FFmpeg
 import com.mashup.dionysos.BR
 import com.mashup.dionysos.R
 import com.mashup.dionysos.base.fragment.BaseFragment
+import com.mashup.dionysos.base.viewmodel.BaseViewModel
 import com.mashup.dionysos.databinding.TimelapseCameraFragmentBinding
 import kotlinx.android.synthetic.main.timelapse_camera_fragment.*
 import java.io.File
@@ -21,7 +22,7 @@ import java.io.File
 class TimeLapseCameraFragment :
     BaseFragment<TimelapseCameraFragmentBinding>(R.layout.timelapse_camera_fragment) {
 
-    private lateinit var timeLapsViewModel: TimeLapseViewModel
+    private lateinit var timeLapseViewModel: TimeLapseViewModel
     var first = true
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -29,84 +30,67 @@ class TimeLapseCameraFragment :
 
         val viewModelFactory =
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
-        timeLapsViewModel =
+        timeLapseViewModel =
             ViewModelProvider(activity!!, viewModelFactory).get(TimeLapseViewModel::class.java)
-        binding.setVariable(BR.timeLapseVM, timeLapsViewModel)
-        mCamera.timeLapsViewModel = timeLapsViewModel
-
-//        val bottomSheet = BottomSheetTimeLapse()
-//        bottomSheet.timeViewModel = timeViewModel
-        Log.e("fragment  ", "onActivityCreated $first")
+        binding.setVariable(BR.timeLapseVM, timeLapseViewModel)
+        mCamera.timeLapsViewModel = timeLapseViewModel
 
 
-        timeLapsViewModel.mCameraFacing.observe(this, Observer {
+        timeLapseViewModel.mCameraFacing.observe(this, Observer {
             if (!first) {
-                Log.e("fragment  ", " timeLapsViewModel.mCameraFacing.observe $first")
                 terminateTimer()
             }
             first = false
         })
 
-
-        timeLapsViewModel.mCameraStop.observe(this, Observer {
-            Log.e("mCameraStop  ", "  $it")
-            if (it) {
+        timeLapseViewModel.isPlay.observe(this, Observer {
+            mCamera.playStatus = it
+        })
+        timeLapseViewModel.bottomSheet.observe(this, Observer {
+            Log.e("..", "bottomSheet $it")
+            if (it == BaseViewModel.SelectBottomSheet.YEAH) {
                 mCamera.stop()
-                timeLapsViewModel.mCameraStop.value = false
-                checkFormat()
+                createVideo()
+                timeLapseViewModel.bottomSheet.value = BaseViewModel.SelectBottomSheet.DISMISS
+            } else if (it == BaseViewModel.SelectBottomSheet.NOPE) {
+                timeLapseViewModel.bottomSheet.value = BaseViewModel.SelectBottomSheet.DISMISS
             }
         })
-
-    }
-
-    private fun terminateTimer() {
-        Log.e("fragment  ", "terminateTimer()")
-        parentFragmentManager.beginTransaction().remove(this).commit()
-        timeLapsViewModel.fragmentTerminate.value = true
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        Log.e("fragment  ", "onCreateView")
         first = true
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    override fun onDestroy() {
-        Log.e("fragment  ", "onDestroy")
-        super.onDestroy()
+    private fun terminateTimer() {
+        parentFragmentManager.beginTransaction().remove(this).commit()
+        timeLapseViewModel.fragmentTerminate.value = true
+        timeLapseViewModel.changeFragment.value = TimeLapseViewModel.TimeLapseStatue.PLAY
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(): TimeLapseCameraFragment {
-            return TimeLapseCameraFragment()
-        }
-    }
-
-    private fun checkFormat() {
+    private fun createVideo() {
+        val title = timeLapseViewModel.fileName
+        val folderName = basePath + title
         if (Build.VERSION.SDK_INT > 24) {
-            val title = timeLapsViewModel.fileName
             val rc =
                 FFmpeg.execute("-r 2 -start_number 00000 -i ${basePath}${title}/%05d.jpg ${basePath}${title}.mp4")
 
             when (rc) {
                 Config.RETURN_CODE_SUCCESS -> {
-                    val folderName = basePath + title
-                    setDirEmpty(folderName)
+                    terminateTimer()
                     Log.i(Config.TAG, "deleted")
                     Log.i(Config.TAG, "Command execution completed successfully.")
                 }
                 Config.RETURN_CODE_CANCEL -> {
-                    Log.i(
-                        Config.TAG,
-                        "Command execution cancelled by user."
-                    )
+                    Log.i(Config.TAG, "Command execution cancelled by user.")
                 }
                 else -> {
                     Log.i(
-                        Config.TAG, String.format(
+                        Config.TAG,
+                        String.format(
                             "Command execution failed with rc=%d and the output below.", rc
                         )
                     )
@@ -115,6 +99,7 @@ class TimeLapseCameraFragment :
             }
         } else {
         }
+        setDirEmpty(folderName)
     }
 
     private fun setDirEmpty(path: String) {
@@ -127,4 +112,12 @@ class TimeLapseCameraFragment :
             dir.delete()
         }
     }
+
+    companion object {
+        @JvmStatic
+        fun newInstance(): TimeLapseCameraFragment {
+            return TimeLapseCameraFragment()
+        }
+    }
+
 }
