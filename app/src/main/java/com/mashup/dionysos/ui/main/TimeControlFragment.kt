@@ -23,7 +23,7 @@ class TimeControlFragment :
     private val TAG = "TimeControlFragment"
     private val increaseTime = 1000L
     private lateinit var job: Job
-    lateinit var timeViewModel: TimeViewModel
+    private lateinit var timeViewModel: TimeViewModel
 
     var playStatus = false
     var increase = true
@@ -125,7 +125,12 @@ class TimeControlFragment :
     override fun onDetach() {
         Log.e(TAG, "  onDetach")
         job.cancel()
-        timeViewModel.timeData.value = PlayModel(playStatus = false, increase = true, totalTime = 0L,timeOver = false)
+        timeViewModel.timeData.value = PlayModel(
+            playStatus = false,
+            totalTime = this.timeViewModel.timeData.value!!.totalTime,
+            increase = true,
+            timeOver = false
+        )
         super.onDetach()
     }
 

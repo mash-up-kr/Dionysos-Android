@@ -51,7 +51,8 @@ class NicknameActivity : AppCompatActivity() {
 
     private fun setListeners() {
         ok_btn.setOnClickListener {
-            signUp()
+            if (ok_btn.isSelected)
+                signUp()
         }
     }
     private fun signUp() {
@@ -75,9 +76,11 @@ class NicknameActivity : AppCompatActivity() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                ans_text.text = resources.getText(R.string.nickname_great)
-                ans_text.setTextColor(ContextCompat.getColor(this, R.color.azure))
-                ok_btn.isSelected = true
+                if (ans_text.text.isNotEmpty()) {
+                    ans_text.text = resources.getText(R.string.nickname_great)
+                    ans_text.setTextColor(ContextCompat.getColor(this, R.color.azure))
+                    ok_btn.isSelected = true
+                }
             }, { e ->
                 e.printStackTrace()
                 ans_text.text = resources.getText(R.string.nickname_um)

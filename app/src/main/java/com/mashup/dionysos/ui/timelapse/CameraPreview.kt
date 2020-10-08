@@ -104,13 +104,12 @@ class CameraPreview @JvmOverloads constructor(
         return (mCamera != null)
     }
 
-    private var fileNum = 0
     private var jpegCallback =
         PictureCallback { data: ByteArray?, camera: Camera? ->
             mCamera?.startPreview()
             val basePath = "/data/data/com.mashup.dionysos/files/"
             val folderName = basePath + timeLapsViewModel.fileName
-            val fileName = String.format("%05d", fileNum) + ".jpg"
+            val fileName = String.format("%05d", timeLapsViewModel.fileNum) + ".jpg"
             try {
                 val dir = File(folderName);
                 if (!dir.exists()) {
@@ -122,7 +121,7 @@ class CameraPreview @JvmOverloads constructor(
             } catch (e: IOException) {
                 e.printStackTrace();
             }
-            fileNum++
+            timeLapsViewModel.fileNum++
             safeToTakePicture = true;
         }
 

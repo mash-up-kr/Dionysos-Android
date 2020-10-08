@@ -11,6 +11,7 @@ class TimeLapseViewModel(application: Application) : BaseViewModel(application) 
     var fileDir = ""
     var fileName = "timeLapse"
         private set
+    var fileNum = 0
     val controlTime = MutableLiveData<Long>(0)
     var mCameraFacing = MutableLiveData(1)
     var isPlay = MutableLiveData(true)
@@ -19,7 +20,7 @@ class TimeLapseViewModel(application: Application) : BaseViewModel(application) 
 
     var bottomSheet = MutableLiveData<SelectBottomSheet>(SelectBottomSheet.NON)
 
-    enum class TimeLapseStatue { CREATE, BOTTOM_SHEET, PLAY, TERMINATED }
+    enum class TimeLapseStatue { CREATE, BOTTOM_SHEET, PLAY, EDIT, TERMINATED }
 
 
     val timeDataModel =

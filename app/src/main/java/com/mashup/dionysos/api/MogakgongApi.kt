@@ -30,4 +30,7 @@ interface MogakgongApi {
     //----time-history----
     @POST("/time-history")
     fun reqSaveTimeHistory(@Body reqSaveTimeHistory: ReqSaveTimeHistory):Single<Response<Void>>
+
+    @GET("/time-history")
+    fun reqTimeHistory(): Single<ReqTimeHistory>
 }

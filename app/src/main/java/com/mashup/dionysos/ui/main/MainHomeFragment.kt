@@ -12,6 +12,8 @@ import com.mashup.dionysos.base.fragment.BaseFragment
 import com.mashup.dionysos.base.viewmodel.BaseViewModel
 import com.mashup.dionysos.databinding.FragmentMainHomeBinding
 import com.mashup.dionysos.ui.timelapse.TimeLapseActivity
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 
 class MainHomeFragment :
@@ -62,6 +64,17 @@ class MainHomeFragment :
                 timeViewModel.timeLapse.value = BaseViewModel.SelectBottomSheet.DISMISS
             }
         })
+
+        timeViewModel.repository.reqTimeHistory()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                val base = timeViewModel.timeData.value!!
+                base.totalTime = it.result.duration.toLong()
+                timeViewModel.timeData.value = base
+            }, { e ->
+                e.printStackTrace()
+            })
     }
 
     private fun replaceFragment(fragment: Fragment) {

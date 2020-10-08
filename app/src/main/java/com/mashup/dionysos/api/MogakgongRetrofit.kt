@@ -7,7 +7,7 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MogakgongRetrofit {
-    private val baseUrl = "http://3.34.129.246:8080/"
+    private val baseUrl = "http://13.125.51.10:8080/"
     private var authToken: String? = null
 
     fun getService(): MogakgongApi = retrofit.create(
