@@ -25,7 +25,7 @@ class CameraPreview @JvmOverloads constructor(
     var mCameraFacing = 0
 
     private lateinit var job: Job
-    private val increaseTime = 1000L
+    private val increaseTime = 500L
     var playStatus = false
     var increase = true
 

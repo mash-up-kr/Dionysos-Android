@@ -7,6 +7,8 @@ import com.mashup.dionysos.base.viewmodel.BaseViewModel
 import com.mashup.dionysos.model.PlayModel
 
 class TimeLapseViewModel(application: Application) : BaseViewModel(application) {
+
+    var fileDir = ""
     var fileName = "timeLapse"
         private set
     val controlTime = MutableLiveData<Long>(0)
@@ -24,6 +26,8 @@ class TimeLapseViewModel(application: Application) : BaseViewModel(application) 
         MutableLiveData(PlayModel(playStatus = false, increase = true, totalTime = 0L))
 
     fun setFileName(string: String) {
+        val a = getApplication<Application>()
+        a.applicationContext
         fileName = string
     }
 

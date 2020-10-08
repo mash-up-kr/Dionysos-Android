@@ -2,6 +2,7 @@ package com.mashup.dionysos.ui.timelapse
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.MediaController
 import androidx.lifecycle.ViewModelProvider
 import com.mashup.dionysos.BR
@@ -24,8 +25,10 @@ class TimeLapseViewFragment :
         timeLapsViewModel =
             ViewModelProvider(activity!!, viewModelFactory).get(TimeLapseViewModel::class.java)
         binding.setVariable(BR.timeLapseVM, timeLapsViewModel)
+
         val mc = MediaController(activity)
-        val path = basePath + timeLapsViewModel.fileName + ".mp4"
+        val path = "${timeLapsViewModel.fileDir}/${timeLapsViewModel.fileName}.mp4"
+        Log.e("path",path)
         videoView.setVideoURI(Uri.parse(path))
         videoView.setMediaController(mc)
         videoView.start()

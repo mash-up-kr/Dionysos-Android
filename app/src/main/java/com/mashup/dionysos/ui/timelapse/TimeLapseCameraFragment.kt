@@ -23,7 +23,8 @@ class TimeLapseCameraFragment :
     BaseFragment<TimelapseCameraFragmentBinding>(R.layout.timelapse_camera_fragment) {
 
     private lateinit var timeLapseViewModel: TimeLapseViewModel
-    var first = true
+    private val basePath = "/data/data/com.mashup.dionysos/files/"
+    private var first = true
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -68,20 +69,23 @@ class TimeLapseCameraFragment :
     private fun terminateTimer() {
         parentFragmentManager.beginTransaction().remove(this).commit()
         timeLapseViewModel.fragmentTerminate.value = true
-        timeLapseViewModel.changeFragment.value = TimeLapseViewModel.TimeLapseStatue.PLAY
     }
 
     private fun createVideo() {
         val title = timeLapseViewModel.fileName
-        val folderName = basePath + title
+
         if (Build.VERSION.SDK_INT > 24) {
+
+            val master = "${timeLapseViewModel.fileDir}/${title}.mp4"
             val rc =
-                FFmpeg.execute("-r 6 -start_number 00000 -i ${basePath}${title}/%05d.jpg ${basePath}${title}.mp4")
+                FFmpeg.execute("-r 12 -start_number 00000 -i ${basePath}${title}/%05d.jpg $master")
 
             when (rc) {
                 Config.RETURN_CODE_SUCCESS -> {
                     terminateTimer()
-                    Log.i(Config.TAG, "deleted")
+                    timeLapseViewModel.changeFragment.value =
+                        TimeLapseViewModel.TimeLapseStatue.PLAY
+                    Log.e("RETURN_CODE_SUCCESS", "  $master")
                     Log.i(Config.TAG, "Command execution completed successfully.")
                 }
                 Config.RETURN_CODE_CANCEL -> {
@@ -100,7 +104,6 @@ class TimeLapseCameraFragment :
         } else {
         }
     }
-
     override fun onDestroy() {
         val title = timeLapseViewModel.fileName
         val folderName = basePath + title

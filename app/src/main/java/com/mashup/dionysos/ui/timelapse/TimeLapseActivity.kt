@@ -1,6 +1,7 @@
 package com.mashup.dionysos.ui.timelapse
 
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -24,6 +25,10 @@ class TimeLapseActivity : BaseActivity<ActivityTimelapseBinding>(R.layout.activi
         startFragment(TimeLapseViewModel.TimeLapseStatue.CREATE)
         val simpleDate = SimpleDateFormat("MMddhhmmss")
         val getTime = simpleDate.format(Date(System.currentTimeMillis()))
+
+        val a = getExternalFilesDir(Environment.DIRECTORY_MOVIES)?.absolutePath
+        Log.e("12312", "    " + a)
+        timeLapseViewModel.fileDir = a ?: basePath
         timeLapseViewModel.setFileName(getTime)
     }
 

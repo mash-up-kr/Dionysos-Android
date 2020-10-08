@@ -14,6 +14,7 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId: Int) : Ap
 
     companion object {
         private const val sharedPrefFile = "app_preferences"
+        val basePath = "/data/data/com.mashup.dionysos/files/"
         const val jwt = "jwt"
     }
 

@@ -14,10 +14,16 @@
         android:background="@color/dark_grey"
         android:orientation="vertical"
         tools:context=".ui.timelapse.TimeLapseActivity">
-
+        <ImageView
+            android:id="@+id/btnPlay"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/icon_app"/>
         <VideoView
             android:id="@+id/videoView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+
     </LinearLayout>
 </layout>
