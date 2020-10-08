@@ -20,6 +20,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="q">
+        <service android:name=".ForecdTerminationService"
+            android:stopWithTask="false" />
         <activity android:name=".ui.setting.SettingActivity" />
         <activity android:name=".ui.mypage.MyPageEditActivity" />
 

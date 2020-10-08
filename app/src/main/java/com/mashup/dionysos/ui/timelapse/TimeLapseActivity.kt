@@ -1,17 +1,20 @@
 package com.mashup.dionysos.ui.timelapse
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.mashup.dionysos.ForecdTerminationService
 import com.mashup.dionysos.R
 import com.mashup.dionysos.base.activity.BaseActivity
 import com.mashup.dionysos.databinding.ActivityTimelapseBinding
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class TimeLapseActivity : BaseActivity<ActivityTimelapseBinding>(R.layout.activity_timelapse) {
     companion object {
@@ -24,6 +27,7 @@ class TimeLapseActivity : BaseActivity<ActivityTimelapseBinding>(R.layout.activi
         super.onCreate(savedInstanceState)
         initMainDataBinding()
         observers()
+        startService(Intent(this, ForecdTerminationService::class.java))
         startFragment(TimeLapseCameraFragment())
 
         val simpleDate = SimpleDateFormat("MMddhhmmss")
@@ -36,6 +40,8 @@ class TimeLapseActivity : BaseActivity<ActivityTimelapseBinding>(R.layout.activi
     }
 
     override fun onDestroy() {
+        Log.e("12312", "    " + "onDestroy")
+
         val title = timeLapseViewModel.fileName
         val folderName = basePath + title
         setDirEmpty(folderName)

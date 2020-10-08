@@ -34,7 +34,7 @@ class TimeLapseViewModel(application: Application) : BaseViewModel(application) 
     }
 
     fun recodeStopImage(boolean: Boolean): Int {
-        return if (boolean) R.drawable.ic_btn_recode_play else R.drawable.ic_btn_recode_pause
+        return if (!boolean) R.drawable.ic_btn_recode_play else R.drawable.ic_btn_recode_pause
     }
     fun onClickSelectBottomSheet(select: SelectBottomSheet) {
         bottomSheet.value = select
