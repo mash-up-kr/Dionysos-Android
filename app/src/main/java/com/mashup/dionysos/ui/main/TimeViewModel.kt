@@ -3,6 +3,7 @@ package com.mashup.dionysos.ui.main
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.mashup.dionysos.R
 import com.mashup.dionysos.api.MogakgongApi
 import com.mashup.dionysos.base.viewmodel.BaseViewModel
 import com.mashup.dionysos.model.MainModel
@@ -13,7 +14,7 @@ class TimeViewModel(application: Application) : BaseViewModel(application) {
     val controlTime = MutableLiveData<Long>(0)
 
     lateinit var repository: MogakgongApi
-    val timeDataModel =
+    val timeData =
         MutableLiveData(PlayModel(playStatus = false, increase = true, totalTime = 0L))
     val mainBottom = MutableLiveData(MainModel(ranking = false, home = true, myPage = false))
 
@@ -55,9 +56,9 @@ class TimeViewModel(application: Application) : BaseViewModel(application) {
                a.myPage = false
             }
             2 -> {
-               a.ranking = false
-               a.home = true
-               a.myPage = false
+                a.ranking = false
+                a.home = true
+                a.myPage = false
             }
             3 -> {
                 a.ranking = false
@@ -66,6 +67,13 @@ class TimeViewModel(application: Application) : BaseViewModel(application) {
             }
         }
         mainBottom.value = a
+    }
+
+    fun getTextColor(boolean: Boolean): Int {
+        return if (boolean)
+            getApplication<Application>().getColor(R.color.coral_pink)
+        else
+            getApplication<Application>().getColor(R.color.dark_grey)
     }
 
     fun timerSettingNull() {
@@ -80,18 +88,18 @@ class TimeViewModel(application: Application) : BaseViewModel(application) {
             val m = timerSettingMin.value?.toInt() ?: 0
             val s = timerSettingSec.value?.toInt() ?: 0
             val totalSettingTime = timerClickable.value!!.getTotalTime(h, m, s)
-            timeDataModel.value!!.timer = totalSettingTime
-            timeDataModel.value!!.increase = false
-            timeDataModel.value = timeDataModel.value
+            timeData.value!!.timer = totalSettingTime
+            timeData.value!!.increase = false
+            timeData.value = timeData.value
             onClickSelectTimerFragment(SelectFragment.TIMER)
         }
     }
 
     private fun onClickFragmentStopWatch() {
-        timeDataModel.value!!.timer = 0
-        timeDataModel.value!!.increase = true
-        timeDataModel.value = timeDataModel.value
-        Log.e("qwew", "" + timeDataModel.value!!)
+        timeData.value!!.timer = 0
+        timeData.value!!.increase = true
+        timeData.value = timeData.value
+        Log.e("qwew", "" + timeData.value!!)
 
     }
 
@@ -113,9 +121,9 @@ class TimeViewModel(application: Application) : BaseViewModel(application) {
 
     fun onClickPlayer(position: Int) {
         Log.e("position", "position $position")
-        var base = timeDataModel.value!!
+        var base = timeData.value!!
         base.playStatus = position == 1
-        timeDataModel.value = base
+        timeData.value = base
         playerStatus.value = position
         //0: Pause 1:Play 2:Stop
     }

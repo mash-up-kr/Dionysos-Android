@@ -41,8 +41,8 @@
                 android:id="@+id/tvTimerHours"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{Util.getTimeH(timeVM.controlTime)}"
-                android:textColor="@color/dark_grey"
+                android:textColor="@{timeVM.getTextColor(timeVM.timeData.textColorChange)}"
+                android:text_line="@{Util.getTimeH(timeVM.controlTime)}"
                 android:textSize="65sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,8 +52,8 @@
                 android:id="@+id/tvTimerMinSec"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{Util.getTimeMS(timeVM.controlTime)}"
-                android:textColor="@color/dark_grey"
+                android:textColor="@{timeVM.getTextColor(timeVM.timeData.textColorChange)}"
+                android:text_line="@{Util.getTimeMS(timeVM.controlTime)}"
                 android:textSize="65sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -77,7 +77,7 @@
                 android:layout_marginStart="@dimen/mai_margin_16"
                 android:src="@drawable/ic_btn_pause"
                 android:onClick="@{()->timeVM.onClickPlayer(0)}"
-                android:visibility="@{timeVM.timeDataModel.playStatus ? View.VISIBLE : View.GONE, default=gone}"
+                android:visibility="@{timeVM.timeData.playStatus ? View.VISIBLE : View.GONE, default=gone}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,7 +88,7 @@
                 android:layout_marginStart="@dimen/mai_margin_16"
                 android:src="@drawable/ic_btn_play"
                 android:onClick="@{()->timeVM.onClickPlayer(1)}"
-                android:visibility="@{timeVM.timeDataModel.playStatus ? View.GONE : View.VISIBLE, default=gone}"
+                android:visibility="@{timeVM.timeData.playStatus ? View.GONE : View.VISIBLE, default=gone}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -99,7 +99,7 @@
                 android:layout_marginStart="@dimen/mai_margin_16"
                 android:onClick="@{()->timeVM.onClickPlayer(2)}"
                 android:src="@drawable/ic_btn_stop"
-                android:visibility="@{timeVM.timeDataModel.playStatus ? View.GONE : View.VISIBLE, default=gone}"
+                android:visibility="@{timeVM.timeData.playStatus ? View.GONE : View.VISIBLE, default=gone}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

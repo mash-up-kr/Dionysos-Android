@@ -26,7 +26,7 @@ class TimerSettingFragment :
 
         Log.e("onActivityCreated", "  TimerSettingFragment")
 
-        timeViewModel.timeDataModel.observe(this, Observer { it ->
+        timeViewModel.timeData.observe(this, Observer { it ->
             if (!it.increase && timeViewModel.timerClickable.value!!.clickable) {
                 Log.e("timeDataModel", "it $it")
                 bottomSheet.show(childFragmentManager, "")

@@ -1,6 +1,9 @@
 package com.mashup.dionysos
 
+import android.text.SpannableString
+import android.text.style.UnderlineSpan
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
@@ -21,4 +24,11 @@ fun bindResource(view: ImageView, image: Int) {
 @BindingAdapter("app:front")
 fun bindTimeLaps(view: com.mashup.dionysos.ui.timelapse.CameraPreview, int: Int) {
   view.mCameraFacing = int
+}
+
+@BindingAdapter("android:text_line")
+fun bindTextUnderLine(view: TextView, string: String) {
+  val content = SpannableString(string)
+  content.setSpan(UnderlineSpan(), 0, content.length, 0);
+  view.text = content
 }

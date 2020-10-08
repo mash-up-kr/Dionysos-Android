@@ -33,10 +33,10 @@ class TimeControlFragment :
         timeViewModel =
             ViewModelProvider(activity!!, viewModelFactory).get(TimeViewModel::class.java)
         binding.setVariable(BR.timeVM, timeViewModel)
-        increase = timeViewModel.timeDataModel.value!!.increase
+        increase = timeViewModel.timeData.value!!.increase
         val bottomSheet = BottomSheetStop()
 
-        timeViewModel.controlTime.value = timeViewModel.timeDataModel.value!!.timer
+        timeViewModel.controlTime.value = timeViewModel.timeData.value!!.timer
         timeViewModel.playerStatus.observe(this, Observer { it ->
             when (it) {
                 0 -> {
@@ -82,18 +82,24 @@ class TimeControlFragment :
     private fun increasePlayTime() {
         timeViewModel?.let { it_ ->
             var base = it_.controlTime.value!!
-            val timeDataModel = it_.timeDataModel.value!!
+            val timeData = it_.timeData.value!!
 
             if (increase) {
                 base += increaseTime
-                timeDataModel.totalTime += increaseTime
+                timeData.totalTime += increaseTime
+            } else if (!increase && timeData.timer <= 0) {
+                if (!timeData.textColorChange) {
+                    timeData.textColorChange = true
+                }
+                base += increaseTime
+                timeData.totalTime += increaseTime
             } else {
                 base -= increaseTime
-                timeDataModel.timer -= increaseTime
-                timeDataModel.totalTime += increaseTime
+                timeData.timer -= increaseTime
+                timeData.totalTime += increaseTime
             }
             it_.controlTime.postValue(base)
-            it_.timeDataModel.postValue(timeDataModel)
+            it_.timeData.postValue(timeData)
         }
     }
 
