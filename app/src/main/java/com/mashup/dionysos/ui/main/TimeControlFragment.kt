@@ -9,6 +9,7 @@ import com.mashup.dionysos.R
 import com.mashup.dionysos.base.fragment.BaseFragment
 import com.mashup.dionysos.base.viewmodel.BaseViewModel
 import com.mashup.dionysos.databinding.FragmentTimeControlBinding
+import com.mashup.dionysos.model.PlayModel
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
@@ -88,8 +89,8 @@ class TimeControlFragment :
                 base += increaseTime
                 timeData.totalTime += increaseTime
             } else if (!increase && timeData.timer <= 0) {
-                if (!timeData.textColorChange) {
-                    timeData.textColorChange = true
+                if (!timeData.timeOver) {
+                    timeData.timeOver = true
                 }
                 base += increaseTime
                 timeData.totalTime += increaseTime
@@ -106,6 +107,7 @@ class TimeControlFragment :
     override fun onDetach() {
         Log.e(TAG, "  onDetach")
         job.cancel()
+        timeViewModel.timeData.value = PlayModel(playStatus = false, increase = true, totalTime = 0L,timeOver = false)
         super.onDetach()
     }
 

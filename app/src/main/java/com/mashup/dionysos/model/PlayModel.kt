@@ -5,5 +5,5 @@ data class PlayModel(
     var increase: Boolean = true,
     var totalTime: Long = 0L,
     var timer: Long = 0L,
-    var textColorChange: Boolean = false
+    var timeOver: Boolean = false
 )
