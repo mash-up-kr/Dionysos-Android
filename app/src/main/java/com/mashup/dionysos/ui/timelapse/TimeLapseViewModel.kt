@@ -3,6 +3,7 @@ package com.mashup.dionysos.ui.timelapse
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.mashup.dionysos.R
 import com.mashup.dionysos.base.viewmodel.BaseViewModel
 import com.mashup.dionysos.model.PlayModel
 
@@ -32,6 +33,9 @@ class TimeLapseViewModel(application: Application) : BaseViewModel(application) 
         fileName = string
     }
 
+    fun recodeStopImage(boolean: Boolean): Int {
+        return if (boolean) R.drawable.ic_btn_recode_play else R.drawable.ic_btn_recode_pause
+    }
     fun onClickSelectBottomSheet(select: SelectBottomSheet) {
         bottomSheet.value = select
     }

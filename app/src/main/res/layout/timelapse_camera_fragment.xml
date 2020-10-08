@@ -58,6 +58,7 @@
             android:layout_marginBottom="54dp"
             android:onClick="@{()->timeLapseVM.onClickRecodeStop()}"
             android:src="@drawable/ic_btn_recode_stop"
+            app:imageResource="@{timeLapseVM.recodeStopImage(timeLapseVM.isPlay())}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btnRecodeFlip"
             app:layout_constraintStart_toEndOf="@id/btnRecodeClose" />

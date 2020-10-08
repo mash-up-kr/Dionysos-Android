@@ -80,8 +80,6 @@ class LoginActivity : AppCompatActivity() {
         if (requestCode == REQUEST_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 //                getCurrentLocation()
-                Toast.makeText(this, "success_permission_msg", Toast.LENGTH_SHORT).show()
-
             } else {
                 Toast.makeText(this, "no_permission_msg", Toast.LENGTH_SHORT).show()
             }
