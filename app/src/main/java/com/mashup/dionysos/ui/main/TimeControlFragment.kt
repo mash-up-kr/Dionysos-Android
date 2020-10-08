@@ -24,7 +24,6 @@ class TimeControlFragment :
     private val increaseTime = 1000L
     private lateinit var job: Job
     lateinit var timeViewModel: TimeViewModel
-    var originTotalTime = 0
 
     var playStatus = false
     var increase = true
@@ -65,10 +64,7 @@ class TimeControlFragment :
                 val timeFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
                 val historyDay = timeFormat.format(System.currentTimeMillis())
                 timeViewModel.repository.reqSaveTimeHistory(
-                    ReqSaveTimeHistory(
-                        duration,
-                        historyDay
-                    )
+                    ReqSaveTimeHistory(duration, historyDay)
                 )
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

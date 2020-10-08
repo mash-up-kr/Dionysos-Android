@@ -7,6 +7,7 @@ import retrofit2.http.*
 
 
 interface MogakgongApi {
+    //----user----
     @POST("/user/check/nickname")
     fun reqNicknameCheck(@Body reqNicknameCheck: ReqNicknameCheck): Single<ResNicknameCheck>
 
@@ -22,8 +23,11 @@ interface MogakgongApi {
     @GET("/user/my")
     fun reqGetNickName(): Single<ResUser>
 
-    @POST("/user/signin")
+    //----ranking----
+    @GET("/ranking/{range}")
+    fun resRanking(@Path("range")range:String): Single<ArrayList<ResRanking>>
+
+    //----time-history----
+    @POST("/time-history")
     fun reqSaveTimeHistory(@Body reqSaveTimeHistory: ReqSaveTimeHistory):Single<Response<Void>>
-
-
 }
