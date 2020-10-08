@@ -33,6 +33,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <TextView
+            android:id="@+id/tvTodayTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:fontFamily="sans-serif-black"
+            android:text="@{Util.getTime(timeLapseVM.controlTime)}"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/ivTimeLapseCover"
+            app:layout_constraintEnd_toEndOf="@id/ivTimeLapseCover"
+            app:layout_constraintStart_toStartOf="@id/ivTimeLapseCover"
+            app:layout_constraintTop_toTopOf="@id/ivTimeLapseCover" />
 
         <ImageView
             android:id="@+id/ivTimeLapseCover"
