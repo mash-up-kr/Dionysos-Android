@@ -13,7 +13,6 @@ class MogakgongRetrofit {
     fun getService(): MogakgongApi = retrofit.create(
         MogakgongApi::class.java
     )
-
     constructor (authToken: String? = "") {
         Log.e("authToken",authToken?:"null")
         this.authToken = authToken

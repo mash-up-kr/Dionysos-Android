@@ -2,6 +2,7 @@ package com.mashup.dionysos.api
 
 import com.mashup.dionysos.api.dto.*
 import io.reactivex.rxjava3.core.Single
+import retrofit2.Response
 import retrofit2.http.*
 
 
@@ -20,5 +21,9 @@ interface MogakgongApi {
 
     @GET("/user/my")
     fun reqGetNickName(): Single<ResUser>
+
+    @POST("/user/signin")
+    fun reqSaveTimeHistory(@Body reqSaveTimeHistory: ReqSaveTimeHistory):Single<Response<Void>>
+
 
 }

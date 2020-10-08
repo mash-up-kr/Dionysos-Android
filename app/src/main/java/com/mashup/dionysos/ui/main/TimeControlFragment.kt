@@ -6,11 +6,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mashup.dionysos.BR
 import com.mashup.dionysos.R
+import com.mashup.dionysos.api.dto.ReqSaveTimeHistory
 import com.mashup.dionysos.base.fragment.BaseFragment
 import com.mashup.dionysos.base.viewmodel.BaseViewModel
 import com.mashup.dionysos.databinding.FragmentTimeControlBinding
 import com.mashup.dionysos.model.PlayModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.*
+import java.text.SimpleDateFormat
 import kotlin.coroutines.CoroutineContext
 
 class TimeControlFragment :
@@ -20,6 +24,7 @@ class TimeControlFragment :
     private val increaseTime = 1000L
     private lateinit var job: Job
     lateinit var timeViewModel: TimeViewModel
+    var originTotalTime = 0
 
     var playStatus = false
     var increase = true
@@ -56,6 +61,23 @@ class TimeControlFragment :
         timeViewModel.timerStop.observe(this, Observer { it ->
             if (it == BaseViewModel.SelectBottomSheet.YEAH) {
                 terminateTimer()
+                val duration: Int = timeViewModel.timeData.value!!.totalTime.toInt()
+                val timeFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                val historyDay = timeFormat.format(System.currentTimeMillis())
+                timeViewModel.repository.reqSaveTimeHistory(
+                    ReqSaveTimeHistory(
+                        duration,
+                        historyDay
+                    )
+                )
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        Log.e("sueecss   ", "  ")
+                    }, { e ->
+                        e.printStackTrace()
+                    })
+
                 timeViewModel.timerStop.value = BaseViewModel.SelectBottomSheet.DISMISS
             } else if (it == BaseViewModel.SelectBottomSheet.NOPE) {
                 timeViewModel.timerStop.value = BaseViewModel.SelectBottomSheet.DISMISS
