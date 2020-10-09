@@ -16,7 +16,8 @@ class MogakgongRetrofit(val applicationContext: Context) {
             AppCompatActivity.MODE_PRIVATE
         )
     }
-    private var authToken: String? = sharedPreferences.getString("jwt", null)
+    private val authToken: String?
+        get() = sharedPreferences.getString("jwt", null)
 
     fun getService(): MogakgongApi = retrofit.create(
         MogakgongApi::class.java

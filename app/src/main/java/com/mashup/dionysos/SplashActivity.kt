@@ -21,9 +21,11 @@ class SplashActivity : AppCompatActivity() {
         if (authToken != null) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finishAffinity()
         } else {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+            finishAffinity()
         }
     }
 }
