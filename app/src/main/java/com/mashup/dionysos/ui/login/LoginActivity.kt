@@ -112,7 +112,10 @@ class LoginActivity : AppCompatActivity() {
         }
         facebook_login_btn.setOnClickListener {
             facebook_login_btn.registerCallback(mCallbackManager, object : FacebookCallback<LoginResult> {
-                override fun onSuccess(result: LoginResult?) {
+                override fun onSuccess(result: LoginResult) {
+                    val accessToken = result.accessToken
+                    provider = Provider.FACEBOOK.value
+                    userId = accessToken.userId
                     redirectNicknameActivity()
                 }
 

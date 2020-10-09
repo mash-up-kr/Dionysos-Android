@@ -76,7 +76,7 @@ class NicknameActivity : AppCompatActivity() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                if (ans_text.text.isNotEmpty()) {
+                if (ans_text.text != resources.getText(R.string.nickname_great)) {
                     ans_text.text = resources.getText(R.string.nickname_great)
                     ans_text.setTextColor(ContextCompat.getColor(this, R.color.azure))
                     ok_btn.isSelected = true
