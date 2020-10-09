@@ -2,6 +2,7 @@ package com.mashup.dionysos.api
 
 import android.util.Log
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -13,16 +14,20 @@ class MogakgongRetrofit {
     fun getService(): MogakgongApi = retrofit.create(
         MogakgongApi::class.java
     )
+
     constructor (authToken: String? = "") {
-        Log.e("authToken",authToken?:"null")
+        Log.e("authToken", authToken ?: "null")
         this.authToken = authToken
     }
 
     private var client = OkHttpClient.Builder()
+        .addInterceptor(HttpLoggingInterceptor().apply { setLevel(HttpLoggingInterceptor.Level.BODY) })
         .addInterceptor { chain ->
-            val newRequest = chain.request().newBuilder()
-                .addHeader("Authorization", authToken)
-                .build()
+            val newRequest = chain.request().newBuilder().apply {
+                authToken?.let {
+                    addHeader("Authorization", it)
+                }
+            }.build()
             chain.proceed(newRequest)
         }.build()
 

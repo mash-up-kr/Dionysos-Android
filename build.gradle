@@ -43,6 +43,8 @@ buildscript {
         //retrofit_version
         retrofit_version = '2.9.0'
 
+        logging_version = '4.9.0'
+
     }
     repositories {
         google()
