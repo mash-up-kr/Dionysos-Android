@@ -16,13 +16,14 @@ import com.mashup.dionysos.ui.main.TimeViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_my_page_edit.*
+import org.koin.android.ext.android.inject
 
 class MyPageEditActivity : BaseActivity<ActivityMyPageEditBinding>(R.layout.activity_my_page_edit) {
     companion object {
         private const val TAG = "MY_PAGE_EDIT_ACTIVIY"
     }
 
-    private lateinit var repository: MogakgongApi
+    private val repository: MogakgongApi by inject()
 
     lateinit var timeViewModel: TimeViewModel
     lateinit var myPageViewModel: MyPageViewModel
@@ -32,7 +33,6 @@ class MyPageEditActivity : BaseActivity<ActivityMyPageEditBinding>(R.layout.acti
         initMainDataBinding()
         Log.e(TAG, ":  onCreateView")
 
-        repository = getMogakgongApi()
         timeViewModel.repository = repository
 
         editNickName()

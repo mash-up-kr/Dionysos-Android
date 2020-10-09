@@ -6,12 +6,14 @@ import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mashup.dionysos.R
+import com.mashup.dionysos.api.MogakgongApi
 import com.mashup.dionysos.base.activity.BaseActivity
 import com.mashup.dionysos.databinding.ActivityMainBinding
 import com.mashup.dionysos.ui.mypage.MyPageEditActivity
 import com.mashup.dionysos.ui.mypage.MyPageFragment
 import com.mashup.dionysos.ui.ranking.RankingFragment
 import com.mashup.dionysos.ui.setting.SettingActivity
+import org.koin.android.ext.android.inject
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -29,7 +31,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         initMainDataBinding()
         Log.e(TAG, ":  onCreateView")
 
-        val repository = getMogakgongApi()
+        val repository: MogakgongApi by inject()
         timeViewModel.repository = repository
         timeViewModel.changeFragment.observe(this, Observer { it ->
             Log.e(TAG, ":  changeFragment $it")

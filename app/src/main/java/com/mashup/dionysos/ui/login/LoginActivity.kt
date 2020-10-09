@@ -22,6 +22,7 @@ import com.kakao.usermgmt.callback.MeV2ResponseCallback
 import com.kakao.usermgmt.response.MeV2Response
 import com.kakao.util.exception.KakaoException
 import com.mashup.dionysos.R
+import com.mashup.dionysos.api.MogakgongApi
 import com.mashup.dionysos.api.MogakgongRetrofit
 import com.mashup.dionysos.api.dto.Provider
 import com.mashup.dionysos.api.dto.ReqSignIn
@@ -30,6 +31,7 @@ import com.mashup.dionysos.ui.main.MainActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
+import org.koin.android.ext.android.inject
 
 
 class LoginActivity : AppCompatActivity() {
@@ -47,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
 
     private var mLoginCallback: LoginCallback? = null
     private var mCallbackManager: CallbackManager? = null
-    private val repository = MogakgongRetrofit().getService()
+    private val repository: MogakgongApi by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

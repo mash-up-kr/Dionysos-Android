@@ -24,11 +24,6 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId: Int) : Ap
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutId)
         binding.lifecycleOwner = this
-        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
-    }
-
-    fun getMogakgongApi(): MogakgongApi {
-        val jwt = mPreferences.getString(jwt, "null")
-        return MogakgongRetrofit(jwt).getService()
+        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE)
     }
 }

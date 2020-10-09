@@ -1,24 +1,26 @@
 package com.mashup.dionysos.api
 
-import android.util.Log
+import android.content.Context
+import androidx.appcompat.app.AppCompatActivity
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MogakgongRetrofit {
+class MogakgongRetrofit(val applicationContext: Context) {
     private val baseUrl = "http://13.125.51.10:8080/"
-    private var authToken: String? = null
+    private val sharedPreferences by lazy {
+        applicationContext.getSharedPreferences(
+            "app_preferences",
+            AppCompatActivity.MODE_PRIVATE
+        )
+    }
+    private var authToken: String? = sharedPreferences.getString("jwt", null)
 
     fun getService(): MogakgongApi = retrofit.create(
         MogakgongApi::class.java
     )
-
-    constructor (authToken: String? = "") {
-        Log.e("authToken", authToken ?: "null")
-        this.authToken = authToken
-    }
 
     private var client = OkHttpClient.Builder()
         .addInterceptor(HttpLoggingInterceptor().apply { setLevel(HttpLoggingInterceptor.Level.BODY) })

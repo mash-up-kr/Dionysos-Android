@@ -1,6 +1,7 @@
 package com.mashup.dionysos.ui.login
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,25 +10,31 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.mashup.dionysos.R
-import com.mashup.dionysos.api.MogakgongRetrofit
+import com.mashup.dionysos.api.MogakgongApi
 import com.mashup.dionysos.api.dto.Provider
 import com.mashup.dionysos.api.dto.ReqNicknameCheck
 import com.mashup.dionysos.api.dto.ReqSignUp
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_nickname.*
+import org.koin.android.ext.android.inject
 
 class NicknameActivity : AppCompatActivity() {
     companion object {
-        private const val TAG = "NICKNAME_ACTIVITY"
+        private const val TAG = "LOGIN_ACTIVITY"
+        private const val sharedPrefFile = "app_preferences"
+        private const val jwt = "jwt"
     }
+
     private var userId:String? = null
     private var provider:String?= null
-    private val repository = MogakgongRetrofit().getService()
+    private val repository: MogakgongApi by inject()
+    private lateinit var mPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nickname)
+        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
         setListeners()
         userId = intent.getStringExtra("userId")
         provider = intent.getStringExtra("provider")
@@ -63,6 +70,9 @@ class NicknameActivity : AppCompatActivity() {
             .subscribe({
                 Log.e(TAG, "success signUp $it")
                 val intent = Intent(this, WelcomActivity::class.java)
+                val preferencesEditor: SharedPreferences.Editor = mPreferences.edit()
+                preferencesEditor.putString(jwt, it.result.jwt)
+                preferencesEditor.apply()
                 startActivity(intent)
                 finish()
             }, { e ->
