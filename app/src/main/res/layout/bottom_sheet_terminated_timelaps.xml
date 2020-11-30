@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.mashup.dionysos.base.viewmodel.BaseViewModel.SelectBottomSheet" />
+        <variable
+            name="timeLapseVM"
+            type="com.mashup.dionysos.ui.timelapse.TimeLapseViewModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layoutBottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:orientation="vertical"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/bottom_sheet_title_margin_top"
+            android:text="@string/terminated_timelaps"
+            android:textColor="@color/dark_grey"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/bottom_sheet_detail_text_margin_top"
+            android:text="@string/change_thumbnail_page"
+            android:textColor="@color/dark_grey"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/mai_margin_40"
+            android:layout_marginBottom="@dimen/mai_margin_40"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/btnNope"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:onClick="@{()->timeLapseVM.onClickSelectBottomSheet(SelectBottomSheet.NOPE)}"
+                android:src="@drawable/ic_btn_no"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/btnYeah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/mai_margin_10"
+                android:onClick="@{()->timeLapseVM.onClickSelectBottomSheet(SelectBottomSheet.YEAH)}"
+                android:src="@drawable/ic_btn_yes"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

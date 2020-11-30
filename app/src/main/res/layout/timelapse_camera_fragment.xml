@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.mashup.dionysos.Util" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="timeLapseVM"
+            type="com.mashup.dionysos.ui.timelapse.TimeLapseViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dark_grey"
+        tools:context=".ui.timelapse.TimeLapseActivity">
+
+        <com.mashup.dionysos.ui.timelapse.CameraPreview
+            android:id="@+id/mCamera"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:front="@{timeLapseVM.mCameraFacing}" />
+
+        <TextView
+            android:id="@+id/tvTodayTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="@{Util.getTime(timeLapseVM.controlTime)}"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btnRecodeClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close_40"
+            android:onClick="@{()->timeLapseVM.onClickRecodeClose()}"
+            app:layout_constraintBottom_toBottomOf="@id/btnRecodeStop"
+            app:layout_constraintEnd_toStartOf="@id/btnRecodeStop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btnRecodeStop" />
+
+        <ImageView
+            android:id="@+id/btnRecodeStop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="54dp"
+            android:onClick="@{()->timeLapseVM.onClickRecodeStop()}"
+            android:src="@drawable/ic_btn_recode_stop"
+            app:imageResource="@{timeLapseVM.recodeStopImage(timeLapseVM.isPlay())}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnRecodeFlip"
+            app:layout_constraintStart_toEndOf="@id/btnRecodeClose" />
+
+        <ImageView
+            android:id="@+id/btnRecodeFlip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->timeLapseVM.onClickRecodeFlip()}"
+            android:src="@drawable/ic_flip"
+            app:layout_constraintBottom_toBottomOf="@id/btnRecodeStop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnRecodeStop"
+            app:layout_constraintTop_toTopOf="@id/btnRecodeStop" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

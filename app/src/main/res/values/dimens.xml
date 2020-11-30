@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="mai_margin_16">16dp</dimen>
+    <dimen name="mai_margin_20">20dp</dimen>
+    <dimen name="mai_margin_32">32dp</dimen>
+    <dimen name="mai_margin_40">40dp</dimen>
+    <dimen name="global_bottom_on_icon">72dp</dimen>
+    <dimen name="global_bottom_off_icon">64dp</dimen>
+    <dimen name="main_margin_8">8dp</dimen>
+    <dimen name="mai_margin_10">10dp</dimen>
+    <dimen name="text_24">24sp</dimen>
+    <dimen name="text_16">16sp</dimen>
+    <dimen name="text_14">14sp</dimen>
+    <dimen name="mai_margin_36">36dp</dimen>
+    <dimen name="loginBtnHeight">44dp</dimen>
+    <dimen name="loginBtnMarginRow">30dp</dimen>
+    <dimen name="login_btn_text">14sp</dimen>
+    <dimen name="bottom_sheet_detail_text_margin_top">10dp</dimen>
+    <dimen name="bottom_sheet_title_margin_top">32dp</dimen>
+    <dimen name="login_title_margin_top">88dp</dimen>
+    <dimen name="login_btn_margin_top">14dp</dimen>
+    <dimen name="nickname_hear_margin_top">25dp</dimen>
+</resources>

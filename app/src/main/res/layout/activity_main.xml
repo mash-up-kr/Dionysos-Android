@@ -1,24 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
     <data>
+
+        <import type="android.view.View" />
+
         <variable
-            name="mainVM"
-            type="com.mashup.dionysos.viewmodel.MainViewModel" />
+            name="timeVM"
+            type="com.mashup.dionysos.ui.main.TimeViewModel" />
     </data>
 
-    <LinearLayout
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvMain"
+        <FrameLayout
+            android:id="@+id/fragmentMainTap"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@{mainVM.test.test}"
-            tools:text = "dddd" />
-    </LinearLayout>
+            android:layout_height="match_parent" />
 
+        <include
+            bind:timeVM="@{timeVM}"
+            layout="@layout/item_global_bottom"
+            android:visibility="@{timeVM.showMainTabBar ? View.VISIBLE : View.GONE, default=visible}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
+    </FrameLayout>
 </layout>

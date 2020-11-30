@@ -4,7 +4,7 @@ buildscript {
         compile_sdk_version = 30
         build_tools_version = '30.0.0'
 
-        min_sdk_version = 21
+        min_sdk_version = 24
         target_sdk_version = 30
 
         //kotlin
@@ -25,18 +25,37 @@ buildscript {
         //exoplayer
         exoplayer_version = '2.11.7'
 
+        //mobile_ffmpeg
+        mobile_ffmpeg_version = "4.4"
+
         //lifecycle_version
         lifecycle_version = '2.2.0'
 
+        //gson_version
+        gson_version = '2.8.6'
+
+        //rxandoird_version
+        rxandoird_version = '3.0.0'
+
+        //rxjava_version
+        rxjava_version = '3.0.6'
+
+        //retrofit_version
+        retrofit_version = '2.9.0'
+
+        logging_version = '4.9.0'
+
+        koin_version = '2.2.0-rc-2'
     }
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.0.0"
+        classpath "com.android.tools.build:gradle:3.5.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
+        classpath "org.koin:koin-gradle-plugin:$koin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -47,6 +66,12 @@ allprojects {
             {
                 google()
                 jcenter()
+                maven{
+                    url "https://maven.google.com"
+                }
+                /*카카오*/
+                maven { url 'http://devrepo.kakao.com:8088/nexus/content/groups/public/'}
+                mavenCentral()
             }
 }
 

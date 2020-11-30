@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.mashup.dionysos.Util" />
+
+        <variable
+            name="timeVM"
+            type="com.mashup.dionysos.ui.main.TimeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <include
+            android:id="@+id/layoutToralTime"
+            layout="@layout/item_total_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:timeVM="@{timeVM}" />
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/layoutControlButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutToralTime"
+            app:layout_constraintVertical_bias="0.3">
+
+            <TextView
+                android:id="@+id/tvTimerHours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@{timeVM.getTextColor(timeVM.timeData.timeOver)}"
+                android:text_line="@{Util.getTimeH(timeVM.controlTime)}"
+                android:textSize="65sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvToday" />
+
+            <TextView
+                android:id="@+id/tvTimerMinSec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@{timeVM.getTextColor(timeVM.timeData.timeOver)}"
+                android:text_line="@{Util.getTimeMS(timeVM.controlTime)}"
+                android:textSize="65sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvToday" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutControlButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/mai_margin_40"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/btnPause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/mai_margin_16"
+                android:src="@drawable/ic_btn_pause"
+                android:onClick="@{()->timeVM.onClickPlayer(0)}"
+                android:visibility="@{timeVM.timeData.playStatus ? View.VISIBLE : View.GONE, default=gone}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/btnPlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/mai_margin_16"
+                android:src="@drawable/ic_btn_play"
+                android:onClick="@{()->timeVM.onClickPlayer(1)}"
+                android:visibility="@{timeVM.timeData.playStatus ? View.GONE : View.VISIBLE, default=gone}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/btnStop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/mai_margin_16"
+                android:onClick="@{()->timeVM.onClickPlayer(2)}"
+                android:src="@drawable/ic_btn_stop"
+                android:visibility="@{timeVM.timeData.playStatus ? View.GONE : View.VISIBLE, default=gone}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
